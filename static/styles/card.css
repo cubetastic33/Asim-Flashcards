@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Abhaya Libre SemiBold';
+  src: url('/static/styles/AbhayaLibre-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+  
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+  height: 340px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 34px;
+  box-shadow: 0px 3px 10px -5px rgba(182, 182, 182, 0.4), 0px 14px 14px -8px rgba(72, 72, 72, 0.25);
+  outline: 1px solid rgba(255, 255, 255, 0.5);
+  outline-offset: -10px;
+
+  font-family: "Abhaya Libre SemiBold";
+  font-size: 46px;
+  padding: 20px;
+  color: #2b2b2b;
+}
+
+
+.status-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 38px;
+  background-color: white;
+  outline: 2px solid rgba(223, 223, 223, 0.5);
+  border-radius: 30px;
+  margin: 5px;
+  font-size: 18px;
+  padding: 6px;
+  color: #aaaaaa;
+}
+
+.num {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.status-container.new .num {
+  color: #00CB20;
+}
+
+.status-container.review .num {
+  color: #009ACB;
+}
+
+
+  
+  
+  
