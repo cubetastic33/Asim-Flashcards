@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flashcards</title>
+  <link rel="stylesheet" href="/static/styles/flashcard.css">
+</head>
+<body>
+  <div id="flashcards"></div>
+  <button id="prev-card-button" disabled>Previous Card</button>
+  <button id="next-card-button">Next Card</button>
+
+  <script>
+    // Get the deck ID from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const deckId = urlParams.get('deck');
+
+    // Define a function to fetch the flashcards for the selected deck from the database
+    function fetchFlashcards(deckId) {
+      // Implement the API call to fetch the flashcards here
+      // Hardcode the flashcards for the 'automata-theory' deck for now
+      if (deckId === 'automata-theory') {
+        return Promise.resolve([
+          {
+            question: 'What is an automaton?',
+            answer: 'A self-operating machine or mechanism, especially a robot or self-moving vehicle.'
+          },
+          {
+            question: 'What is the difference between a deterministic and a nondeterministic automaton?',
+            answer: 'A deterministic automaton has exactly one transition for each input symbol, while a nondeterministic automaton can have multiple transitions for the same input symbol.'
+          },
+        ]);
+      }
+
+      // Implement handling for other decks here
+    }
+
+    // Fetch the flashcards for the selected deck from the database
+    fetchFlashcards(deckId)
+      .then(flashcards => {
+        let currentCardIndex = 0;
+
+        // Populate the initial flashcard on the page
+        const flashcardsContainer = document.getElementById('flashcards');
+        const currentCard = flashcards[currentCardIndex];
+        const cardContainer = document.createElement('div');
+        cardContainer.className = 'card-container';
+        const cardQuestion = document.createElement('div');
+        cardQuestion.className = 'card-question';
+        cardQuestion.textContent = currentCard.question;
+        const cardAnswer = document.createElement('div');
+        cardAnswer.className = 'card-answer';
+        cardAnswer.textContent = currentCard.answer;
+        cardContainer.appendChild(cardQuestion);
+        cardContainer.appendChild(cardAnswer);
+        flashcardsContainer.appendChild(cardContainer);
+
+       // Add event listeners to the 'Previous Card' and 'Next Card' buttons
+       const prevCardButton = document.getElementById('prev-card-button');
+        prevCardButton.addEventListener('click', () => {
+          // Decrement the current card index
+          currentCardIndex--;
+
+          // Reset the 'Next Card' button and card answer
+          nextCardButton.disabled = false;
+          cardAnswer.style.display = 'none';
+
+          // If we've reached the beginning of the flashcards, disable the 'Previous Card' button
+          if (currentCardIndex === 0) {
+            prevCardButton.disabled = true;
+          }
+
+          // Replace the current card on the page with the previous card
+          const currentCard = flashcards[currentCardIndex];
+          cardQuestion.textContent = currentCard.question;
+          cardAnswer.textContent = currentCard.answer;
+        });
+
+        const nextCardButton = document.getElementById('next-card-button');
+        nextCardButton.addEventListener('click', () => {
+          // Increment the current card index
+          currentCardIndex++;
+
+          // If we've reached the end of the flashcards, display a message and disable the 'Next Card' button
+          if (currentCardIndex >= flashcards.length) {
+            cardQuestion.textContent = 'Congratulations, you have completed the deck!';
+            cardAnswer.textContent = '';
+            nextCardButton.disabled = true;
+            prevCardButton.disabled = false;
+            return;
+          }
+
+          // Replace the current card on the page with the next card
+          const currentCard = flashcards[currentCardIndex];
+          cardQuestion.textContent = currentCard.question;
+          cardAnswer.textContent = currentCard.answer;
+          cardAnswer.style.display = 'none';
+
+          // If we've advanced past the first card, enable the 'Previous Card' button
+          if (currentCardIndex > 0) {
+            prevCardButton.disabled = false;
+          }
+        });
+
+
+    // Add click event listener to the card container to toggle the answer visibility
+    cardContainer.addEventListener('click', () => {
+      if (cardAnswer.style.display === 'none') {
+        cardAnswer.style.display = 'block';
+      } else {
+        cardAnswer.style.display = 'none';
+      }
+    });
+  })
+  .catch(error => {
+    console.error(`Error fetching flashcards: ${error}`);
+  });
+</script>
+</body>
+</html>

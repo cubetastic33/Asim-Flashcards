@@ -9,7 +9,7 @@
   <! this will turn into a loop that displays class card-container 
   for all decks >
   <ul>
-    <div class="card-container">
+    <div class="card-container" onclick="navigateToFlashcards('automata-theory')">
       Automota Theory
       <ul style=
       "display: flex; 
@@ -27,9 +27,12 @@
         </div>
       </ul>
     </div>
-    
-    
-    
   </ul>
+
+  <script>
+    function navigateToFlashcards(deckId) {
+      window.location.href = `start.html?deck=${deckId}`;
+    }
+  </script>
 </body>
 </html>

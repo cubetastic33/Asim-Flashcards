@@ -1,0 +1,22 @@
+.card-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .card-question {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-answer {
+    display: none;
+    margin-top: 10px;
+  }
+  
+  .card-container:active .card-answer {
+    display: block;
+  }
+  
+  

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buffer Page</title>
+</head>
+<body>
+<p>Automata Theory</p>
+  <button onclick="navigateToFlashcards(deckId)">Start</button>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const deckId = urlParams.get('deck');
+    function navigateToFlashcards(deckId) {
+      window.location.href = `flashcards.html?deck=${deckId}`;
+    }
+  </script>
+</body>
+</html>
