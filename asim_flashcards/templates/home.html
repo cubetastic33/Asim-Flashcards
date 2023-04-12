@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>My HTML Page</title>
-  <link rel="stylesheet" href="/static/styles/card.css">
+  <link rel="stylesheet" href="/styles/card.css">
 </head>
 <body>
   <! this will turn into a loop that displays class card-container 
@@ -31,7 +31,7 @@
 
   <script>
     function navigateToFlashcards(deckId) {
-      window.location.href = `start.html?deck=${deckId}`;
+      window.location.href = `start?deck=${deckId}`;
     }
   </script>
 </body>
