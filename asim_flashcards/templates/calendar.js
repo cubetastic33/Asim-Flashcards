@@ -13,74 +13,77 @@ let currentYear = new Date().getFullYear();
 
 
 function generateCalendar() {
-  // Clear any existing cells
-  tbody.innerHTML = '';
-
-  // Set the month and year in the header
-  monthYear.textContent = `${months[currentMonth]}`;
-
-  // Calculate the number of days in the current month
-  const days = daysInMonth[currentMonth];
-
-  // Create a new Date object for the first day of the month
-  const firstDay = new Date(currentYear, currentMonth, 1);
-
-  // Calculate the day of the week for the first day of the month
-  const startDay = firstDay.getDay();
-
-  // Create a new row for the first week
-  let row = document.createElement('tr');
-
-  // Add blank cells for any days before the first day of the month
-  for (let i = 0; i < startDay; i++) {
-    let cell = document.createElement('td');
-    cell.classList.add('blank');
-    row.appendChild(cell);
-  }
-
-  // Add cells for each day of the month
-  for (let i = 1; i <= days; i++) {
-    let cell = document.createElement('td');
-    cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${i}`);
-    cell.classList.add('date');
-    if (i === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
-      cell.classList.add('today');
-    }
-    row.appendChild(cell);
-    if (row.children.length === 7) {
-      tbody.appendChild(row);
-      row = document.createElement('tr');
-    }
-  }
-
-  // Add blank cells for any remaining days in the last week
-  if (row.children.length > 0) {
-    for (let i = row.children.length; i < 7; i++) {
+    // Clear any existing cells
+    tbody.innerHTML = '';
+  
+    // Set the month and year in the header
+    monthYear.textContent = `${months[currentMonth]}`;
+  
+    // Calculate the number of days in the current month
+    const days = daysInMonth[currentMonth];
+  
+    // Create a new Date object for the first day of the month
+    const firstDay = new Date(currentYear, currentMonth, 1);
+  
+    // Calculate the day of the week for the first day of the month
+    const startDay = firstDay.getDay();
+  
+    // Create a new row for the first week
+    let row = document.createElement('tr');
+  
+    // Add blank cells for any days before the first day of the month
+    for (let i = 0; i < startDay; i++) {
       let cell = document.createElement('td');
       cell.classList.add('blank');
       row.appendChild(cell);
     }
-    tbody.appendChild(row);
+  
+    // Add cells for each day of the month
+    for (let i = 1; i <= days; i++) {
+      let cell = document.createElement('td');
+      cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${i}`);
+      cell.classList.add('date');
+      if (i === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
+        cell.classList.add('today');
+      }
+      row.appendChild(cell);
+      if (row.children.length === 7) {
+        tbody.appendChild(row);
+        row = document.createElement('tr');
+      }
+    }
+  
+    // Add blank cells for any remaining days in the last week
+    if (row.children.length > 0) {
+      for (let i = row.children.length; i < 7; i++) {
+        let cell = document.createElement('td');
+        cell.classList.add('blank');
+        row.appendChild(cell);
+      }
+      tbody.appendChild(row);
+    }
+  
+    // Wrap day numbers in a span with the class "day-number"
+    // Wrap day numbers in a div with the class "day-number-container"
+    let dateCells = calendar.querySelectorAll('.date');
+    for (let i = 0; i < dateCells.length; i++) {
+      const dayNumberContainer = document.createElement('div');
+      dayNumberContainer.classList.add('day-number-container');
+      const dayNumber = document.createElement('span');
+      dayNumber.textContent = i + 1;
+      dayNumber.classList.add('day-number');
+      dayNumberContainer.appendChild(dayNumber);
+  
+      const cell = dateCells[i];
+      if (!cell.classList.contains('blank')) {
+        cell.appendChild(dayNumberContainer);
+      }
+    }
   }
-}
+  
+  
 
 generateCalendar();
-
-// Wrap day numbers in a span with the class "day-number"
-// Wrap day numbers in a div with the class "day-number-container"
-for (let i = 1; i <= daysInMonth[currentMonth]; i++) {
-  const dayNumberContainer = document.createElement('div');
-  dayNumberContainer.classList.add('day-number-container');
-  const dayNumber = document.createElement('span');
-  dayNumber.textContent = i;
-  dayNumber.classList.add('day-number');
-  dayNumberContainer.appendChild(dayNumber);
-
-  const cell = calendar.querySelector(`[data-date="${currentYear}-${currentMonth + 1}-${i}"]`);
-  if (cell) {
-    cell.appendChild(dayNumberContainer);
-  }
-}
 
 // Add event listener for the "Add Task" button
 const openModalBtn = document.querySelector('.open-modal-btn');
