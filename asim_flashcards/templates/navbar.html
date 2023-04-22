@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Asim Flashcards</title>
+  <link rel="stylesheet" href="/styles/navbar.css">
+</head>
+<body>
+<! -------- navbar --------- >
+  <div class="navbar">
+    <div class="navbar-brand">
+        <a href="/home" id="asim">Asim</a>
+        <div id="openModal">
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+            <div class="hamburger"></div>
+        </div>
+    </div>
+  </div>
+
+  <! -------- modal --------- >
+  <div class="modal-background"></div>
+  <div class="modal" id="navbar-modal">
+    <div class="modal-header">
+        <button class="modal-close" id="modal-close">&#10005;</button>
+    </div>
+    <div class="modal-content">
+      
+    <div class="modal-title">Asim</div>
+      <ul class="navbar-modal-nav">
+        <li class="nav-item">
+            <a href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/calendar">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a href="/settings">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a href="/about">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="navbar.js"></script>
+
+</body>
+</html>

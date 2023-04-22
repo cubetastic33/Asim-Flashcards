@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'Abhaya Libre SemiBold';
+    src: url('/styles/AbhayaLibre-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+
+.calendar-container {
+    box-shadow: inset 0 0 0 0.5px #ccc;
+    border-radius: 20px;
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar {
+    margin: 0 auto;
+    font-family: 'Abhaya Libre SemiBold';
+    padding: 10px 30px; 
+    text-align: center;
+  }
+
+.month-year {
+    font-size: 36px;
+    text-align: left;
+} 
+
+  
+  .header-tasks {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+  }
+  
+  .prev,
+  .next {
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    color: #878787;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    box-shadow: inset 0 0 0 1px #d5d5d5;
+  }
+
+  .prev {
+    margin-left: 20px;
+  }
+
+  .open-modal-btn {
+    font-family: 'Abhaya Libre SemiBold';
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: inset 0 0 0 2px #ccc;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    table-layout: fixed;
+  }
+  
+  th {
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  td {
+    box-shadow: inset 0 0 0 0.5px #ccc;
+    padding: 10px;
+    text-align: left;
+    position: relative;
+    border-radius: 5px;
+    height: 80px;
+  }
+  
+  .day-number-container {
+    position: relative;
+    top: -32px;
+  }
+  
+  .today {
+    background-color: #fff4ca;
+  }
+  
+  .task-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1;
+  }
+  
+  .task-item {
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .task-item:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .modal-tasks {
+    font-family: 'Abhaya Libre SemiBold';
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-tasks-content {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    margin: 10% auto;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .close {
+    color: #aaa;
+    cursor: pointer;
+    font-size: 28px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
+  
+  .task-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+    padding: 5px;
+    width: 60%;
+  }
+  
+  .add-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+  }
+  
+  
+  .add-btn:hover {
+    background-color: #3e8e41;
+  }
+  
+  .task-count {
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: right;
+  }
+  
+  .task-count span {
+    font-weight: bold;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+
+  .error-message {
+    color: red;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+
+
+
+  

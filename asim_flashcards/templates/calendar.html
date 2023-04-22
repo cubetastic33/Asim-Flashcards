@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Monthly Calendar</title>
+  <link rel="stylesheet" href="/styles/calendar.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+<div class="calendar-container">
+  <div class="calendar">
+    <div class="header-tasks">
+        <h2 class="month-year"></h2>
+        <div>
+            <button class="open-modal-btn">Add Task</button>
+            <button class="prev">&lt;</button>
+            <button class="next">&gt;</button>
+        </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal-tasks">
+  <div class="modal-tasks-content">
+        <span class="close">&times;</span>
+        <h3>Add Task</h3>
+        <label for="task-month">Month:</label>
+        <select id="task-month" name="task-month">
+          <option value="0">January</option>
+          <option value="1">February</option>
+          <option value="2">March</option>
+          <option value="3">April</option>
+          <option value="4">May</option>
+          <option value="5">June</option>
+          <option value="6">July</option>
+          <option value="7">August</option>
+          <option value="8">September</option>
+          <option value="9">October</option>
+          <option value="10">November</option>
+          <option value="11">December</option>
+        </select>
+        <label for="task-day">Day:</label>
+        <select id="task-day" name="task-day">
+          <!-- The options for days will be added dynamically -->
+        </select>
+        <input type="text" class="task-input" placeholder="Enter task...">
+        <p class="error-message" hidden>Please enter a task.</p>
+        <button class="add-btn">Add</button>
+      
+  </div>
+</div>
+
+<script src="calendar.js"></script>
+</body>
+</html>

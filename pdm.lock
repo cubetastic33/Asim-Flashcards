@@ -59,7 +59,8 @@ dependencies = [
 ]
 
 [metadata]
-lock_version = "4.1"
+lock_version = "4.2"
+groups = ["default"]
 content_hash = "sha256:d528ad884dd5563c2a80ada303da7cee7a148239ef950908af092b4a752cb97d"
 
 [metadata.files]
