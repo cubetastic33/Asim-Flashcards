@@ -1,0 +1,71 @@
+.timer {
+    font-size: 28px;
+    font-family: 'Abhaya Libre SemiBold';
+
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    width: 30%;
+    max-width: 400px;
+    height: 200px;
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 20px;
+    margin-right: 20px;
+    margin-top: 53px;
+    padding: 10px;
+
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .timer.active {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .timer-mode {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 25px 0;
+    font-size: 30px;
+  }
+  
+  .timer-title {
+    font-size: 24px;
+  }
+  
+  .timer-close {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .timer-display {
+    margin-bottom: 20px;
+  }
+  
+  .timer-time {
+    font-size: 50px;
+    font-weight: 600;
+  }
+  
+  .timer-controls {
+    display: flex;
+  }
+  
+  .timer-button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 20px;
+  }
+  
