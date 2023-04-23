@@ -49,7 +49,8 @@ function startTimer() {
         isBreak = false;
         startPauseTimerButton.textContent = "Start";
         updateTimerDisplay();
-        audio.play();
+        // open the modal
+        timerModal.classList.toggle("active");
         return;
       }
     } else {
@@ -61,6 +62,8 @@ function startTimer() {
         startPauseTimerButton.textContent = "Start";
         updateTimerDisplay();
         audio.play();
+        // open the modal
+        timerModal.classList.toggle("active");
         return;
       }
     }
