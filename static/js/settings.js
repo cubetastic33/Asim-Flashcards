@@ -148,10 +148,10 @@ function changeToDarkmode(){
 }
 
 const pomodoro = {
-  workMinutes: 0,
-  workSeconds: 5,
-  breakMinutes: 0,
-  breakSeconds: 5,
+  workMinutes: 25,
+  workSeconds: 0,
+  breakMinutes: 5,
+  breakSeconds: 0,
 
   completed : document.querySelector("#completed"),
   total : document.querySelector("#total"),
@@ -208,10 +208,10 @@ const pomodoro = {
   },
 
   reset() {
-    this.workMinutes = 0;
-    this.workSeconds = 5;
-    this.breakMinutes = 0;
-    this.breakSeconds = 5;
+    this.workMinutes = 25;
+    this.workSeconds = 0;
+    this.breakMinutes = 5;
+    this.breakSeconds = 0;
     this.iterations = 1;
     this.isWorking = true;
     this.updateTime();
@@ -233,15 +233,15 @@ const pomodoro = {
   },
 
   switchToBreak() {
-    this.breakMinutes = 0;
-    this.breakSeconds = 5;
+    this.breakMinutes = 5;
+    this.breakSeconds = 0;
     this.isWorking = false;
     this.updateTime();
   },
 
   switchToWork() {
-    this.workMinutes = 0;
-    this.workSeconds = 5;
+    this.workMinutes = 25;
+    this.workSeconds = 0;
     this.isWorking = true;
     this.updateTime();
   },
