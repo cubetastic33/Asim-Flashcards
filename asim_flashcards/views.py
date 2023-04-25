@@ -53,10 +53,6 @@ def send_styles(path):
 def get_setting():
     return render_template('settings.html', name='test value')
 
-@app.route('/styles/<path:path>')
-def send_styles(path):
-    return send_from_directory('../static/styles', path)
-
 @app.route('/images/<path:path>')
 def send_images(path):
     return send_from_directory('../static/images', path)
