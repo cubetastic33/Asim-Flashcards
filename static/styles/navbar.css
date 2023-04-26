@@ -1,0 +1,201 @@
+@font-face {
+  font-family: 'Abhaya Libre SemiBold';
+  src: url('/styles/AbhayaLibre-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Navbar styles */
+#asim {
+  font-size: 30px;
+}
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0px 5px 5px -5px rgba(21, 21, 21, 0.1);
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: 'Abhaya Libre SemiBold';
+  margin-bottom: 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-image: url('https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-collapse {
+    display: flex !important;
+  }
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+  .nav-item {
+    margin: 0 10px;
+  }
+}
+
+/*navbar icons*/
+.nav-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/*timer icon*/
+.material-icons {
+  width: 20px;
+  margin-right: 60px;
+  margin-top: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+
+/* hamburger menu */
+#openModal {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.hamburger {
+  width: 30px;
+  height: 3px;
+  background-color: rgb(34, 34, 34);
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
+
+
+/* Modal styles */
+.modal-background {
+  position: fixed;
+  z-index: 1;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  font-size: 28px;
+  font-family: 'Abhaya Libre SemiBold';
+  display: none;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 200px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: 0.5s;
+  padding-bottom: 190px;
+}
+
+.modal-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.modal.active {
+  display: block;
+}
+
+.modal-background.active {
+  display: block;
+}
+
+.modal-title {
+    position: fixed;
+    top: 10px;
+    font-size: 30px;
+}
+
+.navbar-modal-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 20px;
+  padding: 0;
+}
+
+.modal-header {
+  margin: 5px;
+  position: fixed;
+  right: 0;
+}
+
+.navbar-modal-nav li {
+  margin: 6px 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.modal-close {
+  font-size: 1.5rem;
+  color: #aaa;
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 30px;
+}

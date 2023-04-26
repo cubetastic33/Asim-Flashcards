@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Asim Flashcards</title>
+  <link rel="stylesheet" href="/styles/navbar.css">
+  <link rel="stylesheet" href="/styles/timer.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+  <!-- navbar -->
+  <div class="navbar">
+    <div class="navbar-brand">
+        <a href="/home" id="asim">Asim</a>
+        <div class="nav-icons">
+            <span class="material-icons" id="timer-icon">timer</span>
+            <div class="navbar-hamburger" id="openModal">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <!-- navbar modal -->
+  <div class="modal-background"></div>
+  <div class="modal" id="navbar-modal">
+    <div class="modal-header">
+        <button class="modal-close" id="modal-close">&#10005;</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-title">Asim</div>
+      <ul class="navbar-modal-nav">
+        <li class="navbar-modal-nav-item">
+          <a href="/home" class="navbar-modal-nav-link">Home</a>
+        </li>
+        <li class="navbar-modal-nav-item">
+          <a href="/calendar" class="navbar-modal-nav-link">Calendar</a>
+        </li>
+        <li class="navbar-modal-nav-item">
+          <a href="/settings" class="navbar-modal-nav-link">Settings</a>
+        </li>
+        <li class="navbar-modal-nav-item">
+          <a href="/about" class="navbar-modal-nav-link">About</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+
+    
+  <!-- timer modal -->
+  <div class="timer" id="timer-modal">
+    <div class="timer-display">
+      <div class="timer-mode" id="timer-mode">Study</div>
+      <div class="timer-time" id="timer-time">25:00</div>
+    </div>
+    <div class="timer-controls">
+      <button class="timer-button" id="start-pause-timer">Start</button>
+      <button class="timer-button" id="restart-timer">Restart</button>
+      
+    </div>
+  </div>
+
+
+  <script src="navbar.js"></script>
+  <script src="timer.js"></script>
+</body>
+</html>
