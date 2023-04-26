@@ -1,5 +1,6 @@
+import os
 from asim_flashcards import app
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, send_file
 
 
 @app.route('/')
@@ -38,6 +39,7 @@ def get_calendarjs():
 def get_flashcards():
     return render_template('flashcards.html', name='test value')
 
+<<<<<<< HEAD
 @app.route('/about')
 def get_about():
     return render_template('about.html', name='test value')
@@ -69,4 +71,3 @@ def send_images(path):
 @app.route('/js/<path:path>')
 def send_js(path):
     return send_from_directory('../static/js', path)
-

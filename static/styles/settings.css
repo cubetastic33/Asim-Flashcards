@@ -1,10 +1,3 @@
-@font-face {
-    font-family: 'Abhaya Libre SemiBold';
-    src: url('/styles/AbhayaLibre-SemiBold.ttf') format('truetype');
-    font-style: normal;
-    font-display: swap;
-  }
-
 * {
     margin: 0;
     padding: 0;
@@ -18,11 +11,6 @@ body {
     color: black;;
 }
 
-p {
-    font-size: 20px;
-    margin-bottom: 3px;
-}
-
 .items-container {
     width: 90%;
     margin: auto;
@@ -32,7 +20,10 @@ p {
     color: #ca0000;
 }
 
-
+p {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
 
 .password-form, .name-email-form {
     border-radius: 5px;
@@ -248,4 +239,3 @@ figure:hover img {
 #mode {
     margin-right: 5px;
 }
-
