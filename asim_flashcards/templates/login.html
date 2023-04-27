@@ -12,21 +12,19 @@
 </head>
 <body>
     <h1 id="title">Asim</h1>
-    <div class="container">
-        <h3 id="login-text">Log in</h3>
+    <div class="login-container">
+        <h1 id="login-text">Log in</h1>
         <!--Action is not specified yet-->
         <form action="" name="Form" method="post" id="login-form" required onsubmit="return validateForm()">
             <div class="form-container">
                 <label for="username" class="form-text">User Name</label>
                 <br>
                 <input type="text" name="username" id="username" placeholder="User name">
-                <p style="display: none;" id="username-error">*Please enter your user name</p>
             </div>
             <div class="form-container">
                 <label for="password" class="form-text">Password</label>
                 <br>
                 <input type="password" name="password" id="password" placeholder="Password">
-                <p style="display: none;" id="password-error">*Please enter your password</p>
             </div>
             <div class="button-container">
                 <input type="submit" value="Log in" id="button">

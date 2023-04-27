@@ -6,7 +6,11 @@ body {
     text-align: center;
 }
 
-.container {
+#title {
+    font-size: 50px;
+}
+
+.login-container, .signup-container {
     margin: 50px 35%;
 }
 
@@ -14,25 +18,20 @@ body {
     margin: 10px 0;
 }
 
-#login-text {
+#login-text, #signup-text {
     margin: 0;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .form-text {
-    font-size: 12px;
-}
-
-p {
-    margin: 0;
-    font-size: 5px;
-    color: red;
+    font-size: 20px;
 }
 
 input {
+    font-size: 20px;
     font-family: inherit;
     border-radius: 5px;
-    height: 20px;
+    height: 30px;
     width: 100%;
     border: none;
     background-color: #F8D9D9;
@@ -43,9 +42,9 @@ input {
 #button {
     margin: 10px 0;
     border-radius: 21px;
-    width: 66px;
-    height: 25px;
-    font-size: 16px;
+    width: 80px;
+    height: 35px;
+    font-size: 20px;
     background-color: #FBB8B8;
     color: #1E1E1E;
     font-family: inherit;
@@ -61,4 +60,14 @@ input {
 #button:hover{
     background-color: #FE7C7C;
     color: #2B2B28;
+}
+
+.link-to-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-link {
+    margin: 0 5px;
 }

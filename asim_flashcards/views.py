@@ -43,9 +43,14 @@ def get_flashcards():
 def get_about():
     return render_template('about.html', name='test value')
 
+
 @app.route('/login')
 def get_login():
     return render_template('login.html', name='test value')
+
+@app.route('/signup')
+def get_signup():
+    return render_template('signup.html', name='test value')
 
 @app.route('/study')
 def get_study():

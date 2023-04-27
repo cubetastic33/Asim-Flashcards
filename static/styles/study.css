@@ -33,7 +33,6 @@
   .card-inner.is-flipped {
     transform: rotateY(180deg);
   }
-
   
   .card-face {
     position: absolute;
@@ -87,12 +86,12 @@
 
   #hard {
     background-color: #FBB8B8;
+    border-color: red;
   }
 
   #hard:hover {
     background-color: #E19E9E;
   }
-
 
   #okay {
     background-color: #FAFBB8;
