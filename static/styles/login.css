@@ -1,0 +1,73 @@
+body {
+    font-family: 'Abhaya Libre', serif;
+}
+
+.button-container, #title{
+    text-align: center;
+}
+
+#title {
+    font-size: 50px;
+}
+
+.login-container, .signup-container {
+    margin: 50px 35%;
+}
+
+.form-container {
+    margin: 10px 0;
+}
+
+#login-text, #signup-text {
+    margin: 0;
+    font-size: 30px;
+}
+
+.form-text {
+    font-size: 20px;
+}
+
+input {
+    font-size: 20px;
+    font-family: inherit;
+    border-radius: 5px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    background-color: #F8D9D9;
+    padding-left: 8px;
+    outline-color: #fd99aa;
+}
+
+#button {
+    margin: 10px 0;
+    border-radius: 21px;
+    width: 80px;
+    height: 35px;
+    font-size: 20px;
+    background-color: #FBB8B8;
+    color: #1E1E1E;
+    font-family: inherit;
+    border: none;
+    border-color: none;
+    cursor: pointer;
+    outline: none !important;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+#button:hover{
+    background-color: #FE7C7C;
+    color: #2B2B28;
+}
+
+.link-to-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-link {
+    margin: 0 5px;
+}

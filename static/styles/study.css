@@ -1,0 +1,118 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Abhaya Libre', serif;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+.container {
+    margin: 10px auto;
+}
+
+  .card {
+    margin: 0 auto ;
+    width: 400px;
+    height: 250px;
+    perspective: 1000px;
+  }
+  
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .card-inner.is-flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0px 3px 18px 3px rgba(0, 0, 0, 0.2);
+    color: black;
+    font-size: 20px;
+    
+  }
+  
+  .card-face--front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .card-face--back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light);
+    transform: rotateY(180deg);
+    text-align: center;
+  }
+
+  .button-container {
+    margin: 30px 10%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    font-family: inherit;
+    color: #4B4A4A;
+    font-weight: 600;
+    font-size: 16px;
+    width: 70px;
+    height: 30px;
+    margin: 0 30px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+  }
+
+  #hard {
+    background-color: #FBB8B8;
+    border-color: red;
+  }
+
+  #hard:hover {
+    background-color: #E19E9E;
+  }
+
+  #okay {
+    background-color: #FAFBB8;
+  }
+
+  #okay:hover {
+    background-color: #DADB98;
+  }
+
+  #good {
+    background-color: #B8F7FB;
+  }
+
+  #good:hover {
+    background-color: #9AD9DD;
+  }
+
+  #easy {
+    background-color: #C2FBB8;
+  }
+
+  #easy:hover {
+    background-color: #8EC784;
+  }

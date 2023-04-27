@@ -1,0 +1,17 @@
+
+
+.about-container {
+    font-family: 'Abhaya Libre', serif;
+    margin: 60px 100px;
+    font-size: 20px;
+}
+
+.about-asim {
+    margin-bottom: 50px;
+}
+
+p {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 20px;
+}
