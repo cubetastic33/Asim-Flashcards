@@ -37,27 +37,27 @@
 <div class="modal-tasks">
   <div class="modal-tasks-content">
         <span class="close">&times;</span>
-        <h3>Add Task</h3>
-        <label for="task-month">Month:</label>
-        <select id="task-month" name="task-month">
-          <option value="0">January</option>
-          <option value="1">February</option>
-          <option value="2">March</option>
-          <option value="3">April</option>
-          <option value="4">May</option>
-          <option value="5">June</option>
-          <option value="6">July</option>
-          <option value="7">August</option>
-          <option value="8">September</option>
-          <option value="9">October</option>
-          <option value="10">November</option>
-          <option value="11">December</option>
-        </select>
-        <label for="task-day">Day:</label>
-        <select id="task-day" name="task-day">
-          <!-- The options for days will be added dynamically -->
-        </select>
-        <input type="text" class="task-input" placeholder="Enter task...">
+        <input type="text" class="task-input" placeholder="Enter task">
+        <div>
+          <select id="month-select" name="task-month">
+            <option value="" selected disabled>- Select Month -</option>
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+          <select id="days-select" name="task-day">
+            <!-- The options for days will be added dynamically -->
+          </select>
+        </div>
         <p class="error-message" hidden>Please enter a task.</p>
         <button class="add-btn">Add</button>
       

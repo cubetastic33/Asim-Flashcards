@@ -1,101 +1,175 @@
-const calendar = document.querySelector('.calendar');
-const prevBtn = calendar.querySelector('.prev');
-const nextBtn = calendar.querySelector('.next');
-const monthYear = calendar.querySelector('.month-year');
-const tbody = calendar.querySelector('tbody');
+document.addEventListener('DOMContentLoaded', () => {
+  const calendar = document.querySelector('.calendar');
+  const prevBtn = calendar.querySelector('.prev');
+  const nextBtn = calendar.querySelector('.next');
+  const monthYear = calendar.querySelector('.month-year');
+  const tbody = calendar.querySelector('tbody');
+  const modal = document.querySelector('.modal-tasks');
+  const taskMonthElement = modal.querySelector('#month-select');
+  const taskDayDropdown = modal.querySelector('#days-select');
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
+  const monthSelect = document.getElementById('month-select');
+  const daysSelect = document.getElementById('days-select');
 
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
 
+  function populateDays(selectedDay = new Date().getDate()) {
+    const selectedMonth = monthSelect.value;
+    const daysSelect = document.getElementById('days-select');
 
-function generateCalendar() {
-    // Clear any existing cells
+    let daysInSelectedMonth;
+    if (selectedMonth == 1) {
+      const selectedYear = new Date().getFullYear();
+      const isLeapYear = selectedYear % 4 === 0 && selectedYear % 100 !== 0 || selectedYear % 400 === 0;
+      daysInSelectedMonth = isLeapYear ? 29 : 28;
+    } else {
+      daysInSelectedMonth = daysInMonth[selectedMonth];
+    }
+
+    daysSelect.innerHTML = '';
+
+    const placeholderOption = document.createElement('option');
+    placeholderOption.text = '-';
+    placeholderOption.value = '';
+    daysSelect.add(placeholderOption);
+
+    for (let i = 1; i <= daysInSelectedMonth; i++) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.text = i;
+      daysSelect.add(option);
+      if (i === selectedDay) {
+        option.selected = true;
+      }
+    }
+  }
+  monthSelect.addEventListener('change', populateDays);
+
+  function loadTasks(date) {
+    const tasks = JSON.parse(localStorage.getItem(date)) || [];
+    return tasks;
+  }
+
+  function displayTasks(date, cell) {
+    const taskCount = cell.querySelector('.task-count');
+    const taskList = cell.querySelector('.task-list');
+    const tasks = loadTasks(date);
+
+   
+    taskList.innerHTML = '';
+
+    tasks.forEach(task => {
+      let taskItem = document.createElement('li');
+      taskItem.textContent = task;
+      taskItem.classList.add('task-item');
+      taskList.appendChild(taskItem);
+    });
+  }
+
+  function generateCalendar() {
     tbody.innerHTML = '';
-  
-    // Set the month and year in the header
-    monthYear.textContent = `${months[currentMonth]}`;
-  
-    // Calculate the number of days in the current month
+
+    monthYear.textContent = `${months[currentMonth]} ${currentYear}`;
+
     const days = daysInMonth[currentMonth];
-  
-    // Create a new Date object for the first day of the month
     const firstDay = new Date(currentYear, currentMonth, 1);
-  
-    // Calculate the day of the week for the first day of the month
     const startDay = firstDay.getDay();
-  
-    // Create a new row for the first week
+
     let row = document.createElement('tr');
-  
-    // Add blank cells for any days before the first day of the month
+
     for (let i = 0; i < startDay; i++) {
       let cell = document.createElement('td');
       cell.classList.add('blank');
       row.appendChild(cell);
     }
-  
-    // Add cells for each day of the month
+
     for (let i = 1; i <= days; i++) {
       let cell = document.createElement('td');
-      cell.setAttribute('data-date', `${currentYear}-${currentMonth + 1}-${i}`);
+      cell.setAttribute('data-date', `${currentYear}-${String(currentMonth + 1).padStart(2,'0')}-${String(i).padStart(2, '0')}`);
       cell.classList.add('date');
       if (i === new Date().getDate() && currentMonth === new Date().getMonth() && currentYear === new Date().getFullYear()) {
-        cell.classList.add('today');
+      cell.classList.add('today');
       }
       row.appendChild(cell);
       if (row.children.length === 7) {
-        tbody.appendChild(row);
-        row = document.createElement('tr');
-      }
-    }
-  
-    // Add blank cells for any remaining days in the last week
-    if (row.children.length > 0) {
-      for (let i = row.children.length; i < 7; i++) {
-        let cell = document.createElement('td');
-        cell.classList.add('blank');
-        row.appendChild(cell);
-      }
       tbody.appendChild(row);
-    }
-  
-    // Wrap day numbers in a span with the class "day-number"
-    // Wrap day numbers in a div with the class "day-number-container"
-    let dateCells = calendar.querySelectorAll('.date');
-    for (let i = 0; i < dateCells.length; i++) {
-      const dayNumberContainer = document.createElement('div');
-      dayNumberContainer.classList.add('day-number-container');
-      const dayNumber = document.createElement('span');
-      dayNumber.textContent = i + 1;
-      dayNumber.classList.add('day-number');
-      dayNumberContainer.appendChild(dayNumber);
-  
-      const cell = dateCells[i];
-      if (!cell.classList.contains('blank')) {
-        cell.appendChild(dayNumberContainer);
+      row = document.createElement('tr');
+      }
+      }
+      if (row.children.length > 0) {
+        for (let i = row.children.length; i < 7; i++) {
+          let cell = document.createElement('td');
+          cell.classList.add('blank');
+          row.appendChild(cell);
+        }
+        tbody.appendChild(row);
+      }
+      
+      let dateCells = calendar.querySelectorAll('.date');
+      for (let i = 0; i < dateCells.length; i++) {
+        const dayNumberContainer = document.createElement('div');
+        dayNumberContainer.classList.add('day-number-container');
+        const dayNumber = document.createElement('span');
+        dayNumber.textContent = i + 1;
+        dayNumber.classList.add('day-number');
+        dayNumberContainer.appendChild(dayNumber);
+      
+        const cell = dateCells[i];
+        if (cell && !cell.classList.contains('blank')) {
+          cell.appendChild(dayNumberContainer);
+          
+          
+      
+          const taskList = document.createElement('ul');
+          taskList.classList.add('task-list');
+          cell.appendChild(taskList);
+      
+          displayTasks(cell.dataset.date, cell);
+        }
       }
     }
-  }
-  
-  
 
-generateCalendar();
-
-// Add event listener for the "Add Task" button
-const openModalBtn = document.querySelector('.open-modal-btn');
-openModalBtn.addEventListener('click', () => {
-    const modal = document.querySelector('.modal-tasks');
+    window.onload = function() {
+    generateCalendar();
+    };
+    
+    const openModalBtn = document.querySelector('.open-modal-btn');
+    openModalBtn.addEventListener('click', () => {
+    populateDays();
     modal.style.display = 'block';
     const taskInput = modal.querySelector('.task-input');
     taskInput.focus();
+    });
+    
+    const addBtn = modal.querySelector('.add-btn');
+    addBtn.addEventListener('click', () => {
+    const taskInput = modal.querySelector('.task-input');
+    const errorMessage = modal.querySelector('.error-message');
+    if (taskInput.value.trim()) {
+      const cell = document.querySelector(`[data-date="${currentYear}-${String(parseInt(taskMonthElement.value) + 1).padStart(2, '0')}-${taskDayDropdown.value}"]`);
+      console.log(cell);
+      if (cell) {
+      const tasks = loadTasks(cell.dataset.date);
+      tasks.push(taskInput.value.trim());
+      localStorage.setItem(cell.dataset.date, JSON.stringify(tasks));
+      
+      displayTasks(cell.dataset.date, cell);
+      taskInput.value = '';
+      taskInput.focus();
+      errorMessage.hidden = true;
+      modal.style.display = 'none';
+    } else {
+      console.log('Cell not found');
+    }
+  } else {
+    errorMessage.hidden = false;
+  }
 });
 
-// Add the close button event listener
-const modal = document.querySelector('.modal-tasks');
 const closeBtn = modal.querySelector('.close');
 closeBtn.addEventListener('click', () => {
   modal.style.display = 'none';
@@ -104,78 +178,23 @@ closeBtn.addEventListener('click', () => {
   taskInput.placeholder = 'Enter task...';
 });
 
-// Add event listeners for navigation buttons
+
 prevBtn.addEventListener('click', () => {
-  currentMonth--;
-  if (currentMonth < 0) {
-    currentMonth = 11;
-    currentYear--;
-  }
-  generateCalendar();
+currentMonth--;
+if (currentMonth < 0) {
+currentMonth = 11;
+currentYear--;
+}
+generateCalendar();
 });
 
 nextBtn.addEventListener('click', () => {
-  currentMonth++;
-  if (currentMonth > 11) {
-    currentMonth = 0;
-    currentYear++;
-  }
-  generateCalendar();
+currentMonth++;
+if (currentMonth > 11) {
+currentMonth = 0;
+currentYear++;
+}
+generateCalendar();
 });
 
-// Add event listener for clicking on a date cell
-tbody.addEventListener('click', (e) => {
-    const cell = e.target.closest('.date');
-    if (cell) {
-      const modal = document.querySelector('.modal-tasks'); // Update this line
-      const modalContent = modal.querySelector('.modal-tasks-content');
-      const taskInput = modal.querySelector('.task-input');
-      const addBtn = modal.querySelector('.add-btn');
-      const closeBtn = modal.querySelector('.close');
-        // Set the task count and task list for the selected date
-        const taskCount = cell.querySelector('.task-count');
-        const taskList = cell.querySelector('.task-list');
-        const tasks = JSON.parse(localStorage.getItem(cell.dataset.date)) || [];
-        taskCount.textContent = tasks.length;
-        taskList.innerHTML = '';
-        tasks.forEach(task => {
-          let taskItem = document.createElement('li');
-          taskItem.textContent = task;
-          taskItem.classList.add('task-item');
-          taskList.appendChild(taskItem);
-        });
-
-       // Add task when user clicks Add button
-        addBtn.addEventListener('click', () => {
-            const errorMessage = modal.querySelector('.error-message');
-            if (taskInput.value.trim()) {
-            tasks.push(taskInput.value.trim());
-            localStorage.setItem(cell.dataset.date, JSON.stringify(tasks));
-            taskCount.textContent = tasks.length;
-            let taskItem = document.createElement('li');
-            taskItem.textContent = taskInput.value.trim();
-            taskItem.classList.add('task-item');
-            taskList.appendChild(taskItem);
-            taskInput.value = '';
-            taskInput.focus();
-        
-            // Hide the error message if the input is not empty
-            errorMessage.hidden = true;
-            } else {
-            // Show the error message if the input is empty
-            errorMessage.hidden = false;
-            }
-        });
-  
-
-        // Hide the modal when user clicks outside it
-        window.addEventListener('click', (e) => {
-          if (e.target == modal) {
-            modal.style.display = 'none';
-            taskInput.classList.remove('error');
-            taskInput.placeholder = 'Enter task...';
-          }
-        });
-      }
-    });
-    
+});
