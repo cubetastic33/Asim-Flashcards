@@ -8,14 +8,15 @@ body {
 
 #title {
     font-size: 50px;
+    margin: 15px 0  ;
 }
 
 .login-container, .signup-container {
-    margin: 50px 35%;
+    margin: 25px 35%;
 }
 
 .form-container {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 #login-text, #signup-text {
