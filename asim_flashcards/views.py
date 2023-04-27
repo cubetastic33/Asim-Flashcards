@@ -39,7 +39,6 @@ def get_calendarjs():
 def get_flashcards():
     return render_template('flashcards.html', name='test value')
 
-<<<<<<< HEAD
 @app.route('/about')
 def get_about():
     return render_template('about.html', name='test value')

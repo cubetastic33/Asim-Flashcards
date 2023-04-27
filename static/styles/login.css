@@ -1,0 +1,64 @@
+body {
+    font-family: 'Abhaya Libre', serif;
+}
+
+.button-container, #title{
+    text-align: center;
+}
+
+.container {
+    margin: 50px 35%;
+}
+
+.form-container {
+    margin: 10px 0;
+}
+
+#login-text {
+    margin: 0;
+    font-size: 20px;
+}
+
+.form-text {
+    font-size: 12px;
+}
+
+p {
+    margin: 0;
+    font-size: 5px;
+    color: red;
+}
+
+input {
+    font-family: inherit;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    border: none;
+    background-color: #F8D9D9;
+    padding-left: 8px;
+    outline-color: #fd99aa;
+}
+
+#button {
+    margin: 10px 0;
+    border-radius: 21px;
+    width: 66px;
+    height: 25px;
+    font-size: 16px;
+    background-color: #FBB8B8;
+    color: #1E1E1E;
+    font-family: inherit;
+    border: none;
+    border-color: none;
+    cursor: pointer;
+    outline: none !important;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+
+#button:hover{
+    background-color: #FE7C7C;
+    color: #2B2B28;
+}
