@@ -47,8 +47,9 @@ for (let card of cards) {
 }
 
 function navigateToQuiz(deckId) {
-  window.location.href = `quiz?deck=${deckId}`;
+  window.location.href = `study?deck=${deckId}`;
 }
+
 
 
 // Get the modal

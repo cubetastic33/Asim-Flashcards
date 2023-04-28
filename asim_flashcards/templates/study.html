@@ -9,37 +9,16 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="container">
-        <div class="card">
-            <div class="card-inner">
-                <div class="card-face card-face--front">
-                    <p><strong>Front</strong></p>
-                    <audio controls style="display: none;">
-                        <source src="" type="">
-                    </audio>
-                    <img src="">
-                </div>
-                <div class="card-face card-face--back">
-                    <p><strong>Back</strong></p>
-                    <audio controls style="display: none;">
-                        <source src="" type="">
-                    </audio>
-                    <img src="">
-                </div>
-            </div>
-        </div>
-        <div class="button-container">
-            <input type="button" class="button" id="hard" value="Hard">
-            <input type="button" class="button" id="okay" value="Okay">
-            <input type="button" class="button" id="good" value="Good">
-            <input type="button" class="button" id="easy" value="Easy">
-        </div>
+    <span class="deck-title"></span>
+    <div class="container" id="flashcard-container">
+        <!-- Flashcards will be appended here -->
     </div>
-    <script>
-        const card = document.querySelector(".card-inner");
-        card.addEventListener("click", function (e) {
-            card.classList.toggle('is-flipped');
-        });
-    </script>
+    <div class="button-container" id="button-container">
+        <input type="button" class="button" id="hard" value="Hard">
+        <input type="button" class="button" id="okay" value="Okay">
+        <input type="button" class="button" id="good" value="Good">
+        <input type="button" class="button" id="easy" value="Easy">
+    </div>
+    <script src="study.js"></script>
 </body>
 </html>
