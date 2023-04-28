@@ -2,18 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Buffer Page</title>
+  <title>Flashcards</title>
+  <link rel="stylesheet" href="/styles/start.css">
 </head>
 <body>
-<p>Automata Theory</p>
-  <button onclick="navigateToFlashcards(deckId)">Start</button>
+  {% include 'navbar.html' %}
+  <div class="page-container">
+    <span class="deck-title"></span>
+    <button class="start-btn" onclick="navigateToQuiz(deckId)">Start</button>
+    <div id="flashcard-container">
+      <!-- This is where the flashcards will be displayed -->
+    </div>
+  
+    <div id="add-flashcard-modal" class="add-flashcard-modal-background">
+      <div class="add-flashcard-modal-container">
+        <div class="add-flashcard-modal-content">
+          <span class="close">&times;</span>
+          <h2 id="title">Add Flashcard</h2>
+          <div class="form-container">
+            <textarea id="front" placeholder="Front Content" name="front" rows="4"></textarea>
+            <textarea id="back" placeholder="Back Content" name="back" rows="4"></textarea>
+            <input type="submit" id="add-flashcard-btn" value="Add">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const deckId = urlParams.get('deck');
-    function navigateToFlashcards(deckId) {
-      window.location.href = `flashcards?deck=${deckId}`;
-    }
-  </script>
+  <script src="start.js"></script>
 </body>
 </html>

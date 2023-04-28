@@ -11,6 +11,10 @@ def get_index():
 def get_home():
     return render_template('home.html', name='test value')
 
+@app.route('/home.js')
+def get_homejs():
+    return render_template('home.js')
+
 @app.route('/navbar')
 def get_navbar():
     return render_template('navbar.html', name='test value')
@@ -26,6 +30,10 @@ def get_timerjs():
 @app.route('/start')
 def get_start():
     return render_template('start.html', name='test value')
+
+@app.route('/start.js')
+def get_startjs():
+    return render_template('start.js', name='test value')
 
 @app.route('/calendar')
 def get_calendar():

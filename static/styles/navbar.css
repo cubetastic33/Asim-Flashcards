@@ -9,6 +9,13 @@
 /* Navbar styles */
 #asim {
   font-size: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+}
+
+#asim:hover {
+  background-color: rgb(239, 239, 239);
+  padding: 0 5px 0 5px;
 }
 
 .navbar {
@@ -86,10 +93,16 @@
 /*timer icon*/
 .material-icons {
   width: 20px;
-  margin-right: 60px;
-  margin-top: 15px;
+  margin: 25px 60px 0px 60px;
   transform: translateY(-50%);
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  padding: 6px;
+}
+
+.material-icons:hover {
+  background-color: rgb(239, 239, 239);
 }
 
 
@@ -97,10 +110,17 @@
 #openModal {
   position: absolute;
   top: 40%;
-  right: 10px;
+  right: 8px;
   transform: translateY(-50%);
   z-index: 1;
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border-radius: 12px;
+  padding: 6px;
+}
+
+#openModal:hover {
+  background-color: rgb(239, 239, 239);
 }
 
 .hamburger {
@@ -123,6 +143,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 
 .modal {
@@ -130,7 +151,7 @@
   font-family: 'Abhaya Libre SemiBold';
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   right: 0;
   top: 0;
   width: 100%;
