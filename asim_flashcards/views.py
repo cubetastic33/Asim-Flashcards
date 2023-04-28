@@ -5,10 +5,6 @@ from flask import render_template, send_from_directory, send_file
 
 @app.route('/')
 def get_index():
-    return render_template('index.html', name='test value')
-
-@app.route('/home')
-def get_home():
     return render_template('home.html', name='test value')
 
 @app.route('/home.js')
