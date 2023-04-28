@@ -67,5 +67,13 @@
     cursor: pointer;
     outline: none;
     margin-top: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .timer-button:hover {
+    background-color: rgb(240, 240, 240);
+    
   }
   

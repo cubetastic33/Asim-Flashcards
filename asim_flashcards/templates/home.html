@@ -10,8 +10,8 @@
   <! this will turn into a loop that displays class card-container 
   for all decks >
   <ul>
-    <div class="card-container" onclick="navigateToFlashcards('automata-theory')">
-      Automota Theory
+    <div class="card-container card" onclick="navigateToFlashcards('automata-theory')">
+      Automata Theory
       <ul style=
       "display: flex; 
       flex-direction: 
@@ -28,12 +28,33 @@
         </div>
       </ul>
     </div>
+    <div class="card-container add">
+      <div>
+        <div class="vertical"></div>
+        <div class="horizontal"></div>
+      </div>
+    </div>
+    
   </ul>
+  <div id="add-deck-modal-background">
+    <div id="add-deck-container" class="add-deck-container">
+      <div id="modal-add" class="add-deck-modal-content">
+        <p class="add-deck-title">Add a new deck</p>
+        <span class="close">&times;</span>
+        <textarea id="name" placeholder="Deck Name" rows="1"></textarea>
+        <button id="add-deck-btn">Create</button>
+      </div>
+    </div>
+  </div>
+ 
+  
+  
 
   <script>
     function navigateToFlashcards(deckId) {
       window.location.href = `start?deck=${deckId}`;
     }
   </script>
+   <script src="home.js"></script>
 </body>
 </html>
