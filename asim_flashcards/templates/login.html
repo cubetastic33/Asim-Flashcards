@@ -11,15 +11,15 @@
     <title>Login</title>
 </head>
 <body>
-    <h1 id="title">Asim</h1>
+    <h1 id="title"><a href="/">Asim</a></h1>
     <div class="login-container">
         <h1 id="login-text">Log in</h1>
         <!--Action is not specified yet-->
         <form action="" name="Form" method="post" id="login-form" required onsubmit="return validateForm()">
             <div class="form-container">
-                <label for="username" class="form-text">User Name</label>
+                <label for="username" class="form-text">Username</label>
                 <br>
-                <input type="text" name="username" id="username" placeholder="User name">
+                <input type="text" name="username" id="username" placeholder="Username">
             </div>
             <div class="form-container">
                 <label for="password" class="form-text">Password</label>
@@ -30,6 +30,10 @@
                 <input type="submit" value="Log in" id="button">
             </div>
         </form>
+        <div class="link-to-login">
+            <p>Don't have an account?</p>
+            <a href="/signup" id="login-link">Sign up</a>
+        </div>
     </div>
     <script>
         function validateForm() {

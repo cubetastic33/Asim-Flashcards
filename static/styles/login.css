@@ -1,5 +1,9 @@
 body {
     font-family: 'Abhaya Libre', serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 .button-container, #title{
@@ -8,7 +12,19 @@ body {
 
 #title {
     font-size: 50px;
-    margin: 15px 0  ;
+    margin: 15px 0;
+}
+
+a {
+  text-decoration: none;
+  border-radius: 10px;
+  color: black;
+  padding: 0 5px 0 5px;
+  transition: background-color .2s;
+}
+
+#title a:hover {
+  background-color: rgb(239, 239, 239);
 }
 
 .login-container, .signup-container {
@@ -31,20 +47,20 @@ body {
 input {
     font-size: 20px;
     font-family: inherit;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 30px;
     width: 100%;
     border: none;
     background-color: #F8D9D9;
-    padding-left: 8px;
+    padding: .5rem 1rem;
     outline-color: #fd99aa;
 }
 
 #button {
-    margin: 10px 0;
+    margin-top: 20px;
     border-radius: 21px;
-    width: 80px;
-    height: 35px;
+    width: 100px;
+    height: 40px;
     font-size: 20px;
     background-color: #FBB8B8;
     color: #1E1E1E;
