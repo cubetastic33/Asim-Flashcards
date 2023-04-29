@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
     const urlParams = new URLSearchParams(window.location.search);
     const deckId = urlParams.get('deck');
     const deckName = document.querySelector('.deck-title');
@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Replace this array with code that fetches flashcards from a database
     console.log('here')
     deckName.innerHTML = "Automata Theory";
+    var cards;
+    await fetch('/get_flashcards?' + new URLSearchParams({
+        name: deckId
+    })).then((response) => response.json())
+    .then((responseJson) => {
+      cards = responseJson;
+    });
+    /*
     const cards = [
       { front: 'What is an automaton?', back: 'An abstract machine that can perform computation' },
       { front: 'What is a deterministic finite automaton (DFA)?', back: 'A type of automaton where every state has exactly one transition for each possible input symbol' },
@@ -14,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
       { front: 'What is the Pumping Lemma?', back: 'A tool used to prove that certain languages are not regular' },
       { front: 'What is the Myhill-Nerode Theorem?', back: 'A theorem used to determine if a language is regular by examining the set of distinguishable strings' },
     ];
+    */
   
     // Append each flashcard to the container element
     const container = document.querySelector('.container');
