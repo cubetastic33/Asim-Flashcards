@@ -1,11 +1,15 @@
-import os
 from asim_flashcards import app
-from flask import render_template, send_from_directory, send_file
+from flask import render_template, send_from_directory, send_file, request, redirect
+from asim_flashcards.db_operations import get_user
 
 
 @app.route('/')
 def get_index():
-    return render_template('home.html', name='test value')
+    username = request.cookies.get('username')
+    password_hash = request.cookies.get('password_hash')
+    if get_user(username, password_hash):
+        return render_template('home.html', name='test value')
+    return redirect('/login')
 
 @app.route('/navbar')
 def get_navbar():

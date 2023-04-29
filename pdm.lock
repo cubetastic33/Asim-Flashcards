@@ -65,6 +65,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "python-dotenv"
+version = "1.0.0"
+requires_python = ">=3.8"
+summary = "Read key-value pairs from a .env file and set them as environment variables"
+
+[[package]]
 name = "werkzeug"
 version = "2.2.3"
 requires_python = ">=3.7"
@@ -76,7 +82,7 @@ dependencies = [
 [metadata]
 lock_version = "4.2"
 groups = ["default"]
-content_hash = "sha256:7468fb22c9d0e63af51a0214a3b9dd452b26cbf2bbb0c4726f48a4a752372920"
+content_hash = "sha256:57c08563e2667b4b772db92e6c2cae0cc17e768043a38eb529a1df526b62ec1d"
 
 [metadata.files]
 "click 8.1.3" = [
@@ -230,6 +236,10 @@ content_hash = "sha256:7468fb22c9d0e63af51a0214a3b9dd452b26cbf2bbb0c4726f48a4a75
     {url = "https://files.pythonhosted.org/packages/f8/ef/bd801e889305bc48ca3210569ea613d66a52c717578a465ac2792cec709a/pymongo-4.3.3-cp310-cp310-manylinux2014_x86_64.whl", hash = "sha256:01f7cbe88d22440b6594c955e37312d932fd632ffed1a86d0c361503ca82cc9d"},
     {url = "https://files.pythonhosted.org/packages/fa/6a/bf5391534a10cfb4a2b4a9e6697f17115fc460da8041ec67835c23d2ff59/pymongo-4.3.3-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:a966d5304b7d90c45c404914e06bbf02c5bf7e99685c6c12f0047ef2aa837142"},
     {url = "https://files.pythonhosted.org/packages/fc/28/1b934e5839bf12b022782561c803ee63149737d6c5f9627d3299cd28516f/pymongo-4.3.3-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:7d43ac9c7eeda5100fb0a7152fab7099c9cf9e5abd3bb36928eb98c7d7a339c6"},
+]
+"python-dotenv 1.0.0" = [
+    {url = "https://files.pythonhosted.org/packages/31/06/1ef763af20d0572c032fa22882cfbfb005fba6e7300715a37840858c919e/python-dotenv-1.0.0.tar.gz", hash = "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba"},
+    {url = "https://files.pythonhosted.org/packages/44/2f/62ea1c8b593f4e093cc1a7768f0d46112107e790c3e478532329e434f00b/python_dotenv-1.0.0-py3-none-any.whl", hash = "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"},
 ]
 "werkzeug 2.2.3" = [
     {url = "https://files.pythonhosted.org/packages/02/3c/baaebf3235c87d61d6593467056d5a8fba7c75ac838b8d100a5e64eba7a0/Werkzeug-2.2.3.tar.gz", hash = "sha256:2e1ccc9417d4da358b9de6f174e3ac094391ea1d4fbef2d667865d819dfd0afe"},
