@@ -39,13 +39,13 @@ def get_signup():
 def get_study():
     return render_template('study.html', name='test value')
 
-@app.route('/get_sound')
-def get_sound():
-    return send_file('templates/complete.wav', mimetype='audio/wav')
-
 @app.route('/settings')
 def get_settings():
     return render_template('settings.html', name='test value')
+
+@app.route('/get_sound')
+def get_sound():
+    return send_file('../static/complete.wav', mimetype='audio/wav')
 
 @app.route('/styles/<path:path>')
 def send_styles(path):
