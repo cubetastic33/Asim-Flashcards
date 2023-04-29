@@ -60,7 +60,7 @@ def send_images(path):
 def post_login_user():
     result = login_user(request.form['username'].strip(), request.form['password'].strip())
     if result.startswith('Error'):
-        # There was an error loggin in
+        # There was an error logging in
         return json.dumps(result)
     # The user credentials were correct
     resp = make_response(json.dumps('Success'))

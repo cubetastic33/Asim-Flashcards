@@ -17,8 +17,11 @@ def login_user(username, password):
     db = client['asim-flashcards']
     user = db.users.find_one({'username': username})
     if user is None:
-        return 'Error: Invalid username'
-    return 'Success'
+        return 'Error: Invalid credentials'
+    password_hash = user['hash']
+    if bcrypt.checkpw(password.encode('utf-8'), password_hash.encode('utf-8')):
+        return password_hash
+    return 'Error: Invalid credentials'
 
 def create_user(username, password):
     # Validate the password
