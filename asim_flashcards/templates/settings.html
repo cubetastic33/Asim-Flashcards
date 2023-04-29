@@ -3,179 +3,169 @@
 {% block title %}Settings | Asim Flashcards{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
   <link rel="stylesheet" href="/styles/settings.css">
 {% endblock %}
 
 {% block body %}
-  <div class="items-container">
-    <div class="item-container">
-      <div class="user-info-container">
-        <div class="name-email-container">
-          <p id="user-name-text">{{ name }}</p>
-          <p id="user-email-text"></p>
+  <div class="settings-wapper">
+    <div class="settings-container" id="settings-info">
+      <div class="name-email-password-container" id="name-email-container">
+        <div class="name-email-text-container" id="name-email-text-container" style="display: block;">
+          <p class="name-email-text" id="user-name">UserName</p><!--{{ name }}-->
+          <p class="name-email-text" id="user-email">UserEmail</p><!--{{ email }}-->
         </div>
-        <form action="" class="user-info-form" style="display: none;">
-          <div class="user-info-container">
-            <label for="user-name">Username</label>
-            <input type="text" class="name-email-form" id="user-name" placeholder="Username"
-                   onkeyup="isEmpty()">
+        <!--This is the form for editing user name and email address-->
+        <form class="info-form" id="name-email-form" style="display: none;">
+          <div class="form-container">
+            <label for="username" class="info-form-text">Username</label>
+            <br>
+            <input type="text" class="info-form-input" id="username" placeholder="Username" onkeyup="isEmpty()">
           </div>
-          <div class="user-info-container">
-            <label for="user-email">Email</label>
-            <input type="text" class="name-email-form" id="user-email" placeholder="Email">
+          <div class="form-container">
+            <label for="user-email" class="form-text">Email</label>
+            <br>
+            <input type="text" class="info-form-input" id="useremail" placeholder="Email">
           </div>
-        </form>
-        <div class="button-wrapper">
-          <input type="button" class="button" id="edit-button" value="Edit"
-                 onclick="editUserInfo()"></input>
-        </div>
+          <div class="form-button-container">
+            <!--Submit button for new user name and eamil-->
+            <input type="submit" class="form-button" id="form-name-email-save-button" value="Save" ></input>
+          </div>
+        </form>    
+        <div>
+          <button type="button" class="settings-info-button" id="settings-name-email-edit-button" 
+         style="display: block;">Edit</button></div>   
       </div>
-      <div class="password-container">
-        <p id="user-possword-text">Password</p>
-        <form action="" class="reset-password-form" style="display: none;">
-          <div class="password-container">
-            <label for="current-password">Current Password</label>
-            <input type="password" class="password-form" id="current-password"
-                   placeholder="Current Password">
+      <div class="name-email-password-container" id="pasword-container">
+        <div class="password-text-container">
+          <p class="possword-text" id="user-password">Password</p>
+        </div>
+        <!--This is the form for resetting user password-->
+        <form class="info-form" id="password-form" style="display: none;">
+          <div class="form-container">
+            <label for="current-password" class="info-form-text">Current Password</label>
+            <br>
+            <input type="password" class="info-form-input" id="current-password" placeholder="Current Password">
           </div>
-          <div class="password-container">
-            <label for="new-password">New Password</label>
-            <input type="password" class="password-form" id="new-password"
-                   placeholder="New Password">
+          <div class="form-container">
+            <label for="new-password" class="info-form-text">New Password</label>
+            <br>
+            <input type="password" class="info-form-input" id="new-password" placeholder="New Password">
           </div>
-          <div class="password-container">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" class="password-form" id="confirm-password"
-                   placeholder="Confirm Password">
-            <p id="password-error" style="display: none;">*Password doesn't match</p>
+          <div class="form-container">
+            <label for="confirm-password" class="info-form-text">Confirm Password</label>
+            <br>
+            <input type="password" class="info-form-input" id="confirm-password" placeholder="Confirm Password">
+          </div>
+          <div class="form-button-container">
+            <!--Submit button for new password-->
+            <input type="submit" class="form-button" id="form-password-save-button" value="Save" ></input>
           </div>
         </form>
-        <div class="button-wrapper">
-          <input type="button" class="button" id="reset-button" value="Reset"
-                 onclick="resetPassword()"></input>
+        <div>
+          <button type="button" class="settings-info-button" id="settings-password-reset-button"
+          style="display: block;">Reset</button>
         </div>
       </div>
     </div>
-    <div class="item-container" id="color-scheme">
-      <div class="item-title-container">
-        <img src="../images/light_color.png" alt="color scheme icon"
-             class="item-icon color-scheme-icon">
-        <h3 class="item-title">Color Scheme</h3>
+    <div class="settings-container" id="settings-scheme">
+      <div class="settings-item-title-container" id="settings-shceme-title-container">
+        <img src="../images/light_color.png" alt="color scheme icon" class="settings-item-icon" id="settings-scheme-icon">
+        <h3 class="settings-item-title">Color Scheme</h3>
       </div>
-      <div class="item-body" id="color-shceme-body">
+      <div class="settings-item-body-container" id="settings-scheme-body-container">
         <div class="color-scheme-container">
           <div class="color-scheme-pannel">
             <figure>
               <img src="../images/scheme_default.png" alt="scheme default" class="scheme"
-                   id="scheme-default" onclick="defaultScheme()">
+                   id="scheme-default">
             </figure>
             <p class="color-scheme-text">Simple</p>
           </div>
           <div class="color-scheme-pannel">
             <figure>
-              <img src="../images/scheme_blue.png" alt="scheme blue" class="scheme" id="scheme-blue"
-                   onclick="blueScheme()">
+              <img src="../images/scheme_blue.png" alt="scheme blue" class="scheme" 
+              id="scheme-blue">
             </figure>
             <p class="color-scheme-text">Calming</p>
           </div>
-
           <div class="color-scheme-pannel">
             <figure>
-              <img src="../images/scheme_red.png" alt="scheme red" class="scheme" id="scheme-red"
-                   onclick="redScheme()">
+              <img src="../images/scheme_red.png" alt="scheme red" class="scheme" 
+              id="scheme-red">
             </figure>
             <p class="color-scheme-text">Stimulating</p>
           </div>
-
           <div class="color-scheme-pannel">
             <figure>
               <img src="../images/scheme_yellow.png" alt="scheme yellow" class="scheme"
-                   id="scheme-yellow" onclick="yellowScheme()">
+                   id="scheme-yellow">
             </figure>
             <p class="color-scheme-text">Energizing</p>
           </div>
-
           <div class="color-scheme-pannel">
             <figure>
               <img src="../images/scheme_green.png" alt="scheme green" class="scheme"
-                   id="scheme-green" onclick="greenScheme()">
+                   id="scheme-green">
             </figure>
             <p class="color-scheme-text">Balancing</p>
           </div>
-          <p id="sheme-text">Explanation goes here</p>
+          <p id="scheme-text">Explanation goes here</p>
         </div>
       </div>
     </div>
-    <div class="item-container" id="darkmode">
-      <div class="item-title-container">
-        <figure>
-          <img src="../images/light_darkmode.png" alt="light darkmode icon"
-               class="item-icon darkmode-icon">
-        </figure>
-        <h3 class="item-title">Dark Mode</h3>
+    <div class="settings-container" id="settings-darkmode">
+      <div class="settings-item-title-container" id="settings-darkmode-title-container">
+        <img src="../images/light_darkmode.png" alt="light darkmode icon" class="settings-item-icon" id="settings-darkmode-icon">
+        <h3 class="settings-item-title">Dark Mode</h3>
       </div>
-      <div class="item-body" id="darkmode-body">
+      <div class="settings-item-body-container" id="settings-darkmode-body-container">
         <div class="darkmode-container">
           <figure>
-            <img src="../images/mode_light.png" alt="light darkmode image" class="darkmode-panel"
-                 onclick="changeToLightmode()">
+            <img src="../images/mode_light.png" alt="light darkmode image" class="darkmode-panel" id="lightmode-pannel">
           </figure>
           <p class="darkmode-text">Light Mode</p>
         </div>
         <div class="darkmode-container">
           <figure>
-            <img src="../images/mode_dark.png" alt="dark darkmode image" class="darkmode-panel"
-                 onclick="changeToDarkmode()">
+            <img src="../images/mode_dark.png" alt="dark darkmode image" class="darkmode-panel" id="darkmode-pannel">
           </figure>
           <p class="darkmode-text">Dark Mode</p>
         </div>
       </div>
-
     </div>
-    <div class="item-container" id="pomodoro-timer">
-      <div class="item-title-container">
-        <img src="../images/light_timer.png" alt="pomodoro timer icon"
-             class="item-icon pomodoro-timer-icon">
-        <h3 class="item-title">Pomodoro Timer</h3>
+    <div class="settings-container" id="settings-timer">
+      <div class="settings-item-title-container" id="settings-timer-title-container">
+        <img src="../images/light_timer.png" alt="pomodoro timer icon" class="settings-item-icon" id="settings-timer-icon">
+        <h3 class="settings-item-title">Pomodoro Timer</h3>
       </div>
-      <div class="item-body" id="pomodoro-timer-body">
-
-        <div id="count-display">
+      <div class="settings-item-body-container" id="settings-timer-body-container">
+        <div class="settings-timer-display" id="settings-set-display" style="display: block;">
           <label for="set" id="set-text">Set Count</label>
           <input type="number" id="set" name="set" min="1" max="48" value="1" placeholder="0"
                  class="set-count">
         </div>
-        <div id="set-display" style="display: none;">
-          <span>set</span>
-          <span id="completed">0</span>
-          <span>/</span>
-          <span id="total">0</span>
-        </div>
-        <div class="timer" id="timer" style="display: none;">
-          <span id="mode">Study</span>
-          <span id="minutes">25</span>:<span id="seconds">00</span>
-        </div>
-
-        <div class="timer-button-wrapper">
-          <div class="button-wrapper">
-            <input type="button" class="button" id="start" value="Start"></input>
+        <div class="settings-timer-display" id="settings-active-display" style="display: none;">
+          <div class="setting-timer-container" id="settings-timer">
+            <p class="set-text">set<span id="completed">0</span>/<span id="total">0</span><span id="mode">Study</span></p>
+            <p ><span id="minutes">25</span>:<span id="seconds">00</span></p>
           </div>
-          <div class="button-wrapper">
-            <input type="button" class="button" id="stop" value="Stop"></input>
+        </div>
+        <div class="settings-timer-buttons-container">
+          <div class="settings-timer-button-container">
+            <input type="button" class="settings-timer-button" id="settings-timer-start" value="Start"></input>
           </div>
-          <div class="button-wrapper">
-            <input type="button" class="button" id="reset" value="Reset"></input>
+          <div class="settings-timer-button-container">
+            <input type="button" class="settings-timer-button" id="settings-timer-stop" value="Stop"></input>
+          </div>
+          <div class="settings-timer-button-container">
+            <input type="button" class="settings-timer-button" id="settings-timer-clear" value="Clear"></input>
           </div>
         </div>
       </div>
     </div>
     <hr>
-    <div class="item-container" id="logout-container">
-      <a href="/login" class="logout">Log Out</a>
+    <div class="settings-container" id="settings-logout">
+      <a href="/login" class="logout"><span class="logoutText">Log Out</span></a>
     </div>
   </div>
   <script src="/scripts/settings.js"></script>

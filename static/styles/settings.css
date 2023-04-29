@@ -1,72 +1,89 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@font-face {
+    font-family: 'Abhaya Libre SemiBold';
+    src: url('/styles/AbhayaLibre-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
 }
 
-body {
-    font-family: 'Abhaya Libre', serif;
-    font-size: 1rem;
-    background-color: whitesmoke;
+/*clear the default padding*/
+* {
+    padding: 0;
+}
+
+/*clear the default margin*/
+p {
+    margin: 0;
+}
+
+.settings-wapper {
+    padding: 30px 50px;
+    font-family: 'Abhaya Libre SemiBold';
+    background-color: white;
     color: black;
 }
 
-.items-container {
-    width: 90%;
-    margin: auto;
+
+.settings-container {
+    margin-bottom: 50px;
 }
 
-.modal {
-    height: 300px !important;
+/*Image hover effect*/
+figure img {
+	opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
 
-#password-error {
-    color: #ca0000;
+figure:hover img {
+	opacity: .5;
 }
 
-p {
+/*Username, email and password section*/
+#name-email-container {
+    margin-bottom: 20px;
+}
+
+.name-email-text-container, .password-text-container {
+    margin: 15px 0;
+}
+
+#user-name{
+    font-size: 50px;
+}
+
+#user-email, #user-password {
     font-size: 20px;
-    margin-bottom: 3px;
 }
 
-.password-form, .name-email-form {
-    border-radius: 5px;
-    border: none;
-    background-color: #F8D9D9;
-    padding-left: 8px;
-}
-
-label, .password-form, .user-email-form {
-    display: block;
-}
-
-
-.password-container, .user-info-container{
-    font-size: 20px;
+.form-container {
     margin-bottom: 10px;
 }
 
-#user-name-text {
-    font-size: 50px;
-}
-#user-emain-text{
-    margin-bottom: 5px;
+.info-form {
+    margin: 15px 0;
+    font-size: 20px;
 }
 
-.button{
-    text-align: center;
-    display: inline-block;
-    margin: 3px 0;
-    padding: 3px 0;
+.info-form-input {
+    margin: 5px 0;
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    background-color: #F8D9D9;
+    outline-color: #fd99aa;
+    padding-left: 8px;
 }
-.button {
+
+.form-button, .settings-info-button, .settings-timer-button {
+    font-family: inherit;
     padding: 1px 0;
     background-color: #FBB8B8;
     border-radius: 21px;
-    width: 80px;
-    height: 30px;
+    width: 60px;
+    height: 25px;
     border-color: none;
-    text-align: center;
     cursor: pointer;
     color: #4B4A4A;
     border: none;
@@ -74,18 +91,42 @@ label, .password-form, .user-email-form {
     outline: none !important;
     text-align: center;
     display: inline-block;
-    font-size: 20px;
+    font-size: 15px;
+
 }
-.button:hover{
+
+.form-button:hover, .settings-info-button:hover, .settings-timer-button:hover {
     background-color: #FE7C7C;
     color: #2B2B28;
 }
+
+/* Scheme, darkmode, and timer titiles*/
+.settings-item-title-container {
+    margin: 20px 0;
+    height: 50px;
+    text-align: center;
+}
+
+.settings-item-icon{
+    float: left;
+    height: 40px;
+    margin: auto;
+    display: block;
+}
+.settings-item-title {
+    margin: 0 20px;
+    float: left;
+    height: 60px;
+    font-size: 40px;
+}
+
+/*Color scheme*/
 
 .color-scheme-container {
     text-align: center;
 }
 
-#color-shceme-body{
+#settings-scheme-body-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,23 +136,40 @@ label, .password-form, .user-email-form {
 .color-scheme-pannel{
     margin: 0 10px;
     display: inline-block;
-    max-width: 100%;
+    max-width: 90%;
+    max-height: 90%;
     text-align: center;
 }
 
+figure {
+    margin: 0;
+}
+
+.scheme {
+    width: 80%;
+    height: auto;
+}
+
+#scheme-text {
+    margin: 20px 0;
+    font-size: 20px;
+}
+
 @media (max-width: 768px) {
-    #color-shceme-body {
+    #settings-scheme-body-container {
       flex-wrap: wrap; /* Set flex-wrap property to wrap items */
     }
 
-    #color-shceme-body .color-scheme-pannel {
+    #settings-scheme-body-container .color-scheme-pannel {
         flex-basis: calc(33.33% - 20px);
         margin: 10px;
     }
   }
+  
 
 
-#darkmode-body {
+/*Darkmode*/
+#settings-darkmode-body-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -134,7 +192,7 @@ label, .password-form, .user-email-form {
 
 
 @media (max-width: 767px) {
-    #darkmode-body {
+    #settings-darkmode-body-container {
         flex-direction: column;
         align-items: center;
     }
@@ -148,98 +206,66 @@ label, .password-form, .user-email-form {
     }
 }
 
-
-.item-title-container {
-    margin: 20px 0;
-    height: 50px;
-    text-align: center;
-}
-
-
-.item-icon {
-    float: left;
-    height: 40px;
-    margin: auto;
-    display: block;
-}
-.item-title {
-    margin: 0 20px;
-    float: left;
-    height: 60px;
-    font-size: 40px;
-}
-
-#logout-container {
-    margin: auto;
-    margin: 30px 0;
-    text-align: center;
-}
-
-#set-display {
-    font-size: 20px;
-}
-.set-count {
-    margin-right: 10px;
-    width: 55px;
-    height: 40px;
-    text-align: center;
-    margin: 5px 0;
-    border-radius: 10px;
-    font-size: 30px;
-    display: inline-block;
-    padding-left: 1px;
-}
-
-.set-count::-webkit-outer-spin-button,
-.set-count::-webkit-inner-spin-button {
-    opacity: 1;
-    width: 5px;
-}
-
-
-.logout {
-    font-size: 30px;
-    color: #2B2B28;
-}
-
-figure img {
-	opacity: 1;
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-
-figure:hover img {
-	opacity: .5;
-}
-
-.light-mode {
-    background-color: white;
-    color: black;
-}
-
+/*Timer*/
 #set-text {
     display: inline-block;
     font-size: 20px;
     margin-right: 5px;
 }
 
-.timer {
+.setting-timer-container {
     font-size: 35px;
     margin-bottom: 10px;
 }
 
-#count-display {
+#settings-set-display {
     margin-bottom: 10px;
 }
 
-.timer-button-wrapper {
+.settings-timer-buttons-container {
     display: flex;
+}
+
+.settings-timer-button-container {
+    margin-right: 5px;
 }
 
 #start, #stop {
     margin-right: 5px;
 }
 
+.set-text {
+    font-size: 20px;
+}
+
+#set {
+    font-family: inherit;
+    margin-right: 10px;
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    margin: 5px 0;
+    border-radius: 10px;
+    font-size: 20px;
+    display: inline-block;
+    padding-left: 1px;
+}
+
+#completed, #total {
+    margin: 0 5px;
+}
+
+#completed {
+    margin-left: 10px;
+}
+
 #mode {
-    margin-right: 5px;
+    margin-left: 10px;
+}
+
+/*Log out*/
+#settings-logout {
+    margin: 30px 0 0 0;
+    text-align: center;
+    font-size: 25px;
 }
