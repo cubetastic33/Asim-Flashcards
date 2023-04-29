@@ -22,6 +22,15 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 });
 
+document.querySelector('#logout-container a').addEventListener('click', e => {
+  e.preventDefault();
+  // Log the user out first
+  document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'password_hash=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  // Redirect
+  location.href = '/login';
+});
+
 function editUserInfo(){
     var userinfoContainer = document.getElementsByClassName("name-email-container")[0];
     var editUserinfo = document.getElementsByClassName("user-info-form")[0];
