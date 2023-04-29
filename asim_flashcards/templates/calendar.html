@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Monthly Calendar</title>
+{% extends 'layout.html' %}
+
+{% block title %}Monthly Calendar | Asim Flashcards{% endblock %}
+
+{% block head %}
   <link rel="stylesheet" href="/styles/calendar.css">
-</head>
-<body>
-{% include 'navbar.html' %}
+{% endblock %}
+
+{% block body %}
 <div class="calendar-container">
   <div class="calendar">
     <div class="header-tasks">
@@ -60,10 +60,9 @@
         </div>
         <p class="error-message" hidden>Please enter a task.</p>
         <button class="add-btn">Add</button>
-      
+
   </div>
 </div>
 
 <script src="/scripts/calendar.js"></script>
-</body>
-</html>
+{% endblock %}

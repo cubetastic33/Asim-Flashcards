@@ -1,6 +1,7 @@
+import json
 from asim_flashcards import app
-from flask import render_template, send_from_directory, send_file, request, redirect
-from asim_flashcards.db_operations import get_user
+from flask import render_template, send_from_directory, send_file, request, redirect, make_response
+from asim_flashcards.db_operations import get_user, login_user, create_user
 
 
 @app.route('/')
@@ -11,10 +12,6 @@ def get_index():
         return render_template('home.html', name='test value')
     return redirect('/login')
 
-@app.route('/navbar')
-def get_navbar():
-    return render_template('navbar.html', name='test value')
-
 @app.route('/start')
 def get_start():
     return render_template('start.html', name='test value')
@@ -22,10 +19,6 @@ def get_start():
 @app.route('/calendar')
 def get_calendar():
     return render_template('calendar.html', name='test value')
-
-@app.route('/flashcards')
-def get_flashcards():
-    return render_template('flashcards.html', name='test value')
 
 @app.route('/about')
 def get_about():
@@ -62,3 +55,29 @@ def send_js(path):
 @app.route('/images/<path:path>')
 def send_images(path):
     return send_from_directory('../static/images', path)
+
+@app.route('/login_user', methods=['POST'])
+def post_login_user():
+    result = login_user(request.form['username'].strip(), request.form['password'].strip())
+    if result.startswith('Error'):
+        # There was an error loggin in
+        return json.dumps(result)
+    # The user credentials were correct
+    resp = make_response(json.dumps('Success'))
+    resp.set_cookie('username', request.form['username'].strip())
+    resp.set_cookie('password_hash', result)
+    return resp
+
+@app.route('/signup_user', methods=['POST'])
+def signup_user():
+    if request.form['password'] != request.form['confirm_password']:
+        return json.dumps('Error: Passwords should match')
+    result = create_user(request.form['username'].strip(), request.form['password'].strip())
+    if result.startswith('Error'):
+        # There was an error creating the user
+        return json.dumps(result)
+    # The user has been created
+    resp = make_response(json.dumps('Success'))
+    resp.set_cookie('username', request.form['username'].strip())
+    resp.set_cookie('password_hash', result)
+    return resp

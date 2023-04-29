@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/study.css">
-    <title>Study</title>
-</head>
-<body>
-    {% include 'navbar.html' %}
-    <span class="deck-title"></span>
-    <div class="container" id="flashcard-container">
-        <!-- Flashcards will be appended here -->
-    </div>
-    <div class="button-container" id="button-container">
-        <input type="button" class="button" id="hard" value="Hard">
-        <input type="button" class="button" id="okay" value="Okay">
-        <input type="button" class="button" id="good" value="Good">
-        <input type="button" class="button" id="easy" value="Easy">
-    </div>
-    <script src="/scripts/study.js"></script>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %}Study | Asim Flashcards{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/styles/study.css">
+{% endblock %}
+
+{% block body %}
+  <span class="deck-title"></span>
+  <div class="container" id="flashcard-container">
+    <!-- Flashcards will be appended here -->
+  </div>
+  <div class="button-container" id="button-container">
+    <input type="button" class="button" id="hard" value="Hard">
+    <input type="button" class="button" id="okay" value="Okay">
+    <input type="button" class="button" id="good" value="Good">
+    <input type="button" class="button" id="easy" value="Easy">
+  </div>
+  <script src="/scripts/study.js"></script>
+{% endblock %}

@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Flashcards</title>
+{% extends 'layout.html' %}
+
+{% block title %}Flashcards | Asim Flashcards{% endblock %}
+
+{% block head %}
   <link rel="stylesheet" href="/styles/start.css">
-</head>
-<body>
-  {% include 'navbar.html' %}
+{% endblock %}
+
+{% block body %}
   <div class="page-container">
     <span class="deck-title"></span>
     <button class="start-btn" onclick="navigateToQuiz(deckId)">Start</button>
     <div id="flashcard-container">
       <!-- This is where the flashcards will be displayed -->
     </div>
-  
+
     <div id="add-flashcard-modal" class="add-flashcard-modal-background">
       <div class="add-flashcard-modal-container">
         <div class="add-flashcard-modal-content">
@@ -30,5 +30,4 @@
   </div>
 
   <script src="/scripts/start.js"></script>
-</body>
-</html>
+{% endblock %}

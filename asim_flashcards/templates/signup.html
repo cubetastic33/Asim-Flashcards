@@ -14,21 +14,21 @@
     <h1 id="title">Asim</h1>
     <div class="signup-container">
         <h1 id="signup-text">Sign up</h1>
-        <form action="" name="Form" method="post" id="signup-form" required onsubmit="return validateForm()">
+        <form id="signup-form">
             <div class="form-container">
                 <label for="username" class="form-text">User Name</label>
                 <br>
-                <input type="text" name="username" id="username" placeholder="User name">
+                <input type="text" name="username" id="username" placeholder="User name" autocomplete="off" required>
             </div>
             <div class="form-container">
-                <label for="newpass" class="form-text">Password</label>
+                <label for="password" class="form-text">Password</label>
                 <br>
-                <input type="password" name="newpass" id="newpass" placeholder="New password">
+                <input type="password" name="password" id="password" placeholder="Password" required>
             </div>
             <div class="form-container">
-                <label for="confirmpass" class="form-text">Confirm Password</label>
+                <label for="confirm_password" class="form-text">Confirm Password</label>
                 <br>
-                <input type="password" name="confirmpass" id="confirmpass" placeholder="Confirm password">
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
             </div>
             <div class="button-container">
                 <input type="submit" value="Sign up" id="button">
@@ -40,17 +40,17 @@
         </div>
     </div>
     <script>
-        function validateForm() {
-            var uname = document.forms["Form"]["username"].value;
-            var currpass = document.forms["Form"]["currpass"].value;
-            var newpass = document.forms["Form"]["newpass"].value;
-            var cpnfirmpass = document.forms["Form"]["confirmpass"].value;
-            if (uname == "" || uname == null || currpass == "" || currpass == null 
-            || newpass == "" || newpass == null|| cpnfirmpass == "" || cpnfirmpass == null ) {
-                alert("User name and password must be filled out");
-                return false;
-            }
-        }
+        document.querySelector('#signup-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const data = new URLSearchParams(new FormData(document.querySelector('#signup-form')));
+            fetch('/signup_user', {
+                method: 'POST',
+                body: data,
+            }).then(response => response.json()).then(data => {
+                if (data !== 'Success') alert(data);
+                else location.href = '/';
+            });
+        });
     </script>
 </body>
 </html>

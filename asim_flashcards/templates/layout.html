@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Asim Flashcards</title>
+  <title>{% block title %}Asim Flashcards{% endblock %}</title>
+  {% block head %}{% endblock %}
   <link rel="stylesheet" href="/styles/navbar.css">
   <link rel="stylesheet" href="/styles/timer.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -49,7 +50,7 @@
     </div>
     </div>
 
-    
+
   <!-- timer modal -->
   <div class="timer" id="timer-modal">
     <div class="timer-display">
@@ -59,10 +60,11 @@
     <div class="timer-controls">
       <button class="timer-button" id="start-pause-timer">Start</button>
       <button class="timer-button" id="restart-timer">Restart</button>
-      
+
     </div>
   </div>
 
+  {% block body %}{% endblock %}
 
   <script src="/scripts/navbar.js"></script>
   <script src="/scripts/timer.js"></script>

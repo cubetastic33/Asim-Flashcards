@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My HTML Page</title>
+{% extends 'layout.html' %}
+
+{% block title %}Asim Flashcards{% endblock %}
+
+{% block head %}
   <link rel="stylesheet" href="/styles/card.css">
-</head>
-<body>
-  {% include 'navbar.html' %}
-  <! this will turn into a loop that displays class card-container 
-  for all decks >
+{% endblock %}
+
+{% block body %}
   <ul>
     <div class="card-container card" onclick="navigateToFlashcards('automata-theory')">
       Automata Theory
       <ul style=
-      "display: flex; 
-      flex-direction: 
-      column; 
-      justify-content: center; 
+      "display: flex;
+      flex-direction:
+      column;
+      justify-content: center;
       margin-top: 50px;">
         <div class="status-container new">
           <span class="num">43</span>
@@ -34,7 +32,7 @@
         <div class="horizontal"></div>
       </div>
     </div>
-    
+
   </ul>
   <div id="add-deck-modal-background">
     <div id="add-deck-container" class="add-deck-container">
@@ -46,9 +44,9 @@
       </div>
     </div>
   </div>
- 
-  
-  
+
+
+
 
   <script>
     function navigateToFlashcards(deckId) {
@@ -56,5 +54,4 @@
     }
   </script>
    <script src="/scripts/home.js"></script>
-</body>
-</html>
+{% endblock %}
