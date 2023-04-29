@@ -9,36 +9,40 @@ def get_index():
     username = request.cookies.get('username')
     password_hash = request.cookies.get('password_hash')
     if get_user(username, password_hash):
-        return render_template('home.html', name='test value')
+        return render_template('home.html')
     return redirect('/login')
 
 @app.route('/start')
 def get_start():
-    return render_template('start.html', name='test value')
+    return render_template('start.html')
 
 @app.route('/calendar')
 def get_calendar():
-    return render_template('calendar.html', name='test value')
+    return render_template('calendar.html')
 
 @app.route('/about')
 def get_about():
-    return render_template('about.html', name='test value')
+    return render_template('about.html')
 
 @app.route('/login')
 def get_login():
-    return render_template('login.html', name='test value')
+    return render_template('login.html')
 
 @app.route('/signup')
 def get_signup():
-    return render_template('signup.html', name='test value')
+    return render_template('signup.html')
 
 @app.route('/study')
 def get_study():
-    return render_template('study.html', name='test value')
+    return render_template('study.html')
 
 @app.route('/settings')
 def get_settings():
-    return render_template('settings.html', name='test value')
+    username = request.cookies.get('username')
+    password_hash = request.cookies.get('password_hash')
+    if get_user(username, password_hash):
+        return render_template('settings.html', name=username)
+    return redirect('/login')
 
 @app.route('/get_sound')
 def get_sound():

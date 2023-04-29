@@ -16,9 +16,9 @@
         <h1 id="signup-text">Sign up</h1>
         <form id="signup-form">
             <div class="form-container">
-                <label for="username" class="form-text">User Name</label>
+                <label for="username" class="form-text">Username</label>
                 <br>
-                <input type="text" name="username" id="username" placeholder="User name" autocomplete="off" required>
+                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" required>
             </div>
             <div class="form-container">
                 <label for="password" class="form-text">Password</label>
@@ -48,7 +48,7 @@
                 body: data,
             }).then(response => response.json()).then(data => {
                 if (data !== 'Success') alert(data);
-                else location.href = '/';
+                else location.href = '/settings';
             });
         });
     </script>
