@@ -4,12 +4,6 @@ var isdarkmodeOn;
 var isTimerRunning;
 
 document.addEventListener('DOMContentLoaded', function(){
-    if(!localStorage.getItem('currentUserName')){
-        localStorage.setItem('currentUserName', 'Bob Smith')
-    }else{
-        currentUserName.innerHTML = localStorage.getItem('currentUserName');
-    }
-
     if(!localStorage.getItem('currentUserEmail')){
         localStorage.setItem('currentUserEmail', 'bobsmith@gmail.com')
     }else{
@@ -26,6 +20,15 @@ document.addEventListener('DOMContentLoaded', function(){
             changeToDarkmode();
         }
     }
+});
+
+document.querySelector('#logout-container a').addEventListener('click', e => {
+  e.preventDefault();
+  // Log the user out first
+  document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'password_hash=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  // Redirect
+  location.href = '/login';
 });
 
 function editUserInfo(){
@@ -166,11 +169,11 @@ const pomodoro = {
   isWorking: true,
 
   start() {
-    const setCount = document.querySelector("#set").value; 
+    const setCount = document.querySelector("#set").value;
     if (!this.isRunning) {
         this.isRunning = true;
         this.completed.textContent = this.iterations;
-        this.total.textContent = setCount;  
+        this.total.textContent = setCount;
         this.intervalId = setInterval(() => {
             if (this.isWorking) {
                 if (this.workSeconds === 0) {
