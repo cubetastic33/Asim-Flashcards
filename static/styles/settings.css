@@ -16,6 +16,10 @@ body {
     margin: auto;
 }
 
+.modal {
+    height: 300px !important;
+}
+
 #password-error {
     color: #ca0000;
 }
@@ -99,7 +103,7 @@ label, .password-form, .user-email-form {
     #color-shceme-body {
       flex-wrap: wrap; /* Set flex-wrap property to wrap items */
     }
-    
+
     #color-shceme-body .color-scheme-pannel {
         flex-basis: calc(33.33% - 20px);
         margin: 10px;
@@ -191,7 +195,7 @@ label, .password-form, .user-email-form {
     opacity: 1;
     width: 5px;
 }
-  
+
 
 .logout {
     font-size: 30px;
