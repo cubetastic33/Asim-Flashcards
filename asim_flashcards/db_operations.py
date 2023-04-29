@@ -63,4 +63,23 @@ def create_deck(deck_name):
     })
     return deck_name
 
+def add_flashcard_to_deck(deck_name, front, back):
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'))
+    db = client['asim-flashcards']
+    flashcards = db['flashcards']
+    flashcards.insert_one({
+        'deck_name': deck_name,
+        'front': front,
+        'back': back
+    })
     
+
+def get_flashcards_from_deck(deck_name):
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'))
+    db = client['asim-flashcards']
+    flashcards = db['flashcards']
+    matching_flashcards = []
+    for flashcard in list(flashcards.find({})):
+        if flashcard['deck_name'] == deck_name:
+            matching_flashcards.append({'front': flashcard['front'], 'back': flashcard['back']})
+    return matching_flashcards

@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const deckId = urlParams.get('deck');
     const deckName = document.querySelector('.deck-title');
-  
+    
     // Replace this array with code that fetches flashcards from a database
+    console.log('here')
     deckName.innerHTML = "Automata Theory";
     const cards = [
       { front: 'What is an automaton?', back: 'An abstract machine that can perform computation' },

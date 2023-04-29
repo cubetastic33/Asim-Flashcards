@@ -1,7 +1,7 @@
 import json
 from asim_flashcards import app
 from flask import render_template, send_from_directory, send_file, request, redirect, make_response
-from asim_flashcards.db_operations import get_user, login_user, create_user, get_deck, create_deck
+from asim_flashcards.db_operations import get_user, login_user, create_user, get_deck, create_deck, get_flashcards_from_deck, add_flashcard_to_deck
 
 
 @app.route('/')
@@ -9,40 +9,36 @@ def get_index():
     username = request.cookies.get('username')
     password_hash = request.cookies.get('password_hash')
     if get_user(username, password_hash):
-        return render_template('home.html')
+        return render_template('home.html', name='test value')
     return redirect('/login')
 
 @app.route('/start')
 def get_start():
-    return render_template('start.html')
+    return render_template('start.html', name='test value')
 
 @app.route('/calendar')
 def get_calendar():
-    return render_template('calendar.html')
+    return render_template('calendar.html', name='test value')
 
 @app.route('/about')
 def get_about():
-    return render_template('about.html')
+    return render_template('about.html', name='test value')
 
 @app.route('/login')
 def get_login():
-    return render_template('login.html')
+    return render_template('login.html', name='test value')
 
 @app.route('/signup')
 def get_signup():
-    return render_template('signup.html')
+    return render_template('signup.html', name='test value')
 
 @app.route('/study')
 def get_study():
-    return render_template('study.html')
+    return render_template('study.html', name='test value')
 
 @app.route('/settings')
 def get_settings():
-    username = request.cookies.get('username')
-    password_hash = request.cookies.get('password_hash')
-    if get_user(username, password_hash):
-        return render_template('settings.html', name=username)
-    return redirect('/login')
+    return render_template('settings.html', name='test value')
 
 @app.route('/get_sound')
 def get_sound():
@@ -98,4 +94,15 @@ def post_create_deck():
 
 @app.route('/create_flashcard', methods=['POST'])
 def post_create_flashcard():
-    return
+    deck_name = request.form['name']
+    front = request.form['front']
+    back = request.form['back']
+    add_flashcard_to_deck(deck_name, front, back)
+    resp = make_response(json.dumps('Success'))
+    return resp
+
+@app.route('/get_flashcards', methods=['GET'])
+def post_get_flashcards():
+    deck_name = request.args.get('name')
+    return json.dumps(get_flashcards_from_deck(deck_name))
+    
