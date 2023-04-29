@@ -41,3 +41,26 @@ def create_user(username, password):
         'hash': password_hash
     })
     return password_hash
+
+def get_deck(deck_name):
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'))
+    db = client['asim-flashcards']
+    return db.decks.find_one({'deck_name': deck_name})
+
+def create_deck(deck_name):
+    #Validate deck name
+    if len(deck_name) < 0:
+        return 'Error: Deck name is empty'
+    # Create new client and connect to the server
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'))
+    db = client['asim-flashcards']
+    # Check if deck exists
+    if db.decks.count_documents({'deck_name': deck_name}) > 0:
+        return 'Error: Deck already exists'
+    # Add deck to db
+    db.decks.insert_one({
+        'deck_name': deck_name
+    })
+    return deck_name
+
+    

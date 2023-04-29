@@ -1,7 +1,7 @@
 import json
 from asim_flashcards import app
 from flask import render_template, send_from_directory, send_file, request, redirect, make_response
-from asim_flashcards.db_operations import get_user, login_user, create_user
+from asim_flashcards.db_operations import get_user, login_user, create_user, get_deck, create_deck
 
 
 @app.route('/')
@@ -81,3 +81,17 @@ def signup_user():
     resp.set_cookie('username', request.form['username'].strip())
     resp.set_cookie('password_hash', result)
     return resp
+
+
+@app.route('/create_deck', methods=['POST'])
+def post_create_deck():
+    result = create_deck(request.form['name'])
+    if 'Error' in result:
+        return json.dumps(result)
+    # Added deck
+    resp = make_response(json.dumps('Success'))
+    return resp
+
+@app.route('/create_flashcard', methods=['POST'])
+def post_create_flashcard():
+    return

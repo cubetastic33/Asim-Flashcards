@@ -8,7 +8,7 @@ addDeckContainer.addEventListener("click", () => {
 
 const addDeckButton = document.querySelector("#add-deck-btn");
 
-addDeckButton.addEventListener("click", () => {
+addDeckButton.addEventListener("click", async () => {
   const deckName = deckNameField.value;
   if (!deckName) {
     // Display an error message if empty.
@@ -31,7 +31,34 @@ addDeckButton.addEventListener("click", () => {
   }
   console.log(`Deck name: ${deckName}`);
   // do something with the deck name, like add it to a list of decks
+  var message = "";
+  const data = new FormData();
+  data.append("name", deckName)
+  await fetch('/create_deck', {
+    method: 'POST',
+    body: data
+  }).then(response => response.json()).then(data => {
+    message = data;
+  });
+  if(message !== 'Success')
+  {
+    const errorMessage = document.createElement("div");
+    errorMessage.textContent = "Deck already exists";
+    errorMessage.className = "error";
+    document.body.appendChild(errorMessage);
 
+    // Fade out the error message after a few seconds.
+    setTimeout(() => {
+      errorMessage.style.opacity = "0";
+    }, 2000);
+
+    // Remove the error message after the fade-out effect is complete.
+    setTimeout(() => {
+      document.body.removeChild(errorMessage);
+    }, 3000);
+
+    return;
+  }
    // Display a confirmation message.
    const confirmation = document.createElement("div");
    confirmation.textContent = "Deck created successfully!";
