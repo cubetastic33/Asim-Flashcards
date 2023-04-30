@@ -109,7 +109,7 @@ def post_update_user():
     password_hash = request.cookies.get('password_hash')
     result = update_user(request.form['name'].strip(), request.form['email'].strip(), email,
                          password_hash)
-    if result.startswith('error'):
+    if result.startswith('Error'):
         # There was an error updating the user, so just return the error
         return json.dumps(result)
     # The user has been updated, so update the email cookie to ensure they stay logged in
@@ -139,7 +139,7 @@ def get_deck_route():
     email = request.cookies.get('email')
     password_hash = request.cookies.get('password_hash')
     deck_name = request.args.get('deck_name')
-    
+
     if not get_user(email, password_hash):
         return json.dumps('Error: Not logged in'), 401
 
@@ -184,18 +184,12 @@ def post_create_deck():
     resp = make_response(json.dumps(response_data))
     return resp
 
+
 @app.route('/delete_deck', methods=['POST'])
 def post_delete_deck():
     email = request.cookies.get('email')
     password_hash = request.cookies.get('password_hash')
-    deck_name = request.form['name']
-    result = delete_deck(email, password_hash, deck_name)
-    if 'Error' in result:
-        return json.dumps(result)
-    response_data = {'status': 'Success', 'deck_name': deck_name}
-    resp = make_response(json.dumps(response_data))
-    return resp
-
+    return json.dumps(delete_deck(email, password_hash, request.json))
 
 
 @app.route('/create_flashcard', methods=['POST'])
