@@ -4,35 +4,21 @@
 
 {% block head %}
   <link rel="stylesheet" href="/styles/card.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 {% endblock %}
 
 {% block body %}
-  <ul>
-    <div class="card-container card" onclick="navigateToFlashcards('automata-theory')">
-      Automata Theory
-      <ul style=
-      "display: flex;
-      flex-direction:
-      column;
-      justify-content: center;
-      margin-top: 50px;">
-        <div class="status-container new">
-          <span class="num">43</span>
-          new
+<div class="home-container">
+  <ul class="all-decks" id="decks-list">
+    <!-- Decks will be populated through JavaScript -->
+    <li>
+      <div class="card-container add">
+        <div>
+          <div class="vertical"></div>
+          <div class="horizontal"></div>
         </div>
-        <div class="status-container review">
-          <span class="num">29</span>
-          review
-        </div>
-      </ul>
-    </div>
-    <div class="card-container add">
-      <div>
-        <div class="vertical"></div>
-        <div class="horizontal"></div>
       </div>
-    </div>
-
+    </li>
   </ul>
   <div id="add-deck-modal-background">
     <div id="add-deck-container" class="add-deck-container">
@@ -44,14 +30,17 @@
       </div>
     </div>
   </div>
-
-
-
-
+  <div id="deck-data" style="display: none;" 
+    {% for deck in deck_list %}
+    data-deck{{ loop.index }}="{{ deck.deck_name }}|{{ deck.new_cards }}|{{ deck.review_cards }}"
+    {% endfor %}
+  ></div>
+</div>
+  
   <script>
     function navigateToFlashcards(deckId) {
       window.location.href = `start?deck=${deckId}`;
     }
   </script>
-   <script src="/scripts/home.js"></script>
+  <script src="/scripts/home.js"></script>
 {% endblock %}

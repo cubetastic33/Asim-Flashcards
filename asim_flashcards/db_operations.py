@@ -87,9 +87,54 @@ def get_deck(deck_name):
     return db.decks.find_one({'deck_name': deck_name})
 
 
+def get_all_decks(email, password_hash):
+    # Create new client and connect to the server
+    print("hi")
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
+                         tlsCaFile=certifi.where())
+    db = client['asim-flashcards']
+    
+    # Get user
+    user = db.users.find_one({'email': email, 'hash': password_hash})
+    user_id = user.get('_id')
+    
+    # Find all decks for the user
+    decks = db.decks.find({'user_id': user_id})
+
+    # Extract deck information into a list
+    deck_list = [{'deck_name': deck['deck_name'],
+                  'new_cards': deck.get('new_cards', 0),
+                  'review_cards': deck.get('review_cards', 0)}
+                 for deck in decks]
+    
+    print(f"User: {user}")
+    print(f"Decks: {list(decks)}")
+    print(f"Deck List: {deck_list}")
+
+    return deck_list
+
+def delete_deck(email, password_hash, deck_name):
+    # Create new client and connect to the server
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
+                         tlsCaFile=certifi.where())
+    db = client['asim-flashcards']
+    
+    # Get user
+    user = db.users.find_one({'email': email, 'hash': password_hash})
+    user_id = user.get('_id')
+    
+    # Delete deck
+    db.decks.delete_one({'user_id': user_id, 'deck_name': deck_name})
+    
+    return 'Success'
+
+
+
+
+
 def create_deck(deck_name, email, password_hash):
     # Validate deck name
-    if len(deck_name) < 0:
+    if len(deck_name) < 1:
         return 'Error: Deck name is empty'
     # Create new client and connect to the server
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
@@ -104,9 +149,13 @@ def create_deck(deck_name, email, password_hash):
     # Add deck to db
     db.decks.insert_one({
         'deck_name': deck_name,
-        'user_id': user_id
+        'user_id': user_id,
+        'new_cards': 0,
+        'review_cards': 0
     })
     return deck_name
+
+
 
 
 def add_flashcard_to_deck(deck_name, email, password_hash, front, back):
@@ -117,16 +166,25 @@ def add_flashcard_to_deck(deck_name, email, password_hash, front, back):
     # Get user and deck id
     user = db.users.find_one({'email': email, 'hash': password_hash})
     user_id = user.get('_id')
-    deck = db.decks.find_one({'user_id': user_id})
+    deck = db.decks.find_one({'user_id': user_id, 'deck_name': deck_name})
     deck_id = deck.get('_id')
+    
+    # Get the current number of new cards
+    new_cards = deck.get('new_cards', 0)
+    
     # Add flashcard to a deck
     flashcards = db['flashcards']
     flashcards.insert_one({
         'deck_name': deck_name,
         'front': front,
         'back': back,
-        'deck_id': deck_id
+        'deck_id': deck_id,
+        'new_cards': new_cards
     })
+    print(new_cards)
+    
+    # Update the deck's new cards count
+    db.decks.update_one({'_id': deck_id}, {'$set': {'new_cards': new_cards + 1}})
 
 
 def get_flashcards_from_deck(deck_name, email, password_hash):

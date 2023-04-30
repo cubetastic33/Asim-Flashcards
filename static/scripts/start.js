@@ -37,7 +37,7 @@ function navigateToQuiz(deckId) {
   horizontalLine.className = 'horizontal';
   plusSign.appendChild(horizontalLine);
 
-  deckName.innerHTML = "Automata Theory"
+  deckName.innerHTML = deckId;
   // Replace this array with code that fetches flashcards from a database
   var cards;
   await fetch('/get_flashcards?' + new URLSearchParams({
@@ -56,13 +56,51 @@ function navigateToQuiz(deckId) {
     { front: 'What is the Myhill-Nerode Theorem?' },
   ];
   */
-  console.log(cards)
+  //console.log(cards)
   for (let card of cards) {
     const flashcard = document.createElement('div');
     flashcard.className = 'flashcard';
     flashcard.textContent = card.front;
+    
+    const trashCanBackground = document.createElement("div");
+    trashCanBackground.className = "trash-icon-background";
+
+    const trashCanIcon = document.createElement("span");
+    trashCanIcon.className = "trash-icon";
+    trashCanIcon.innerHTML = '<i class="fa fa-trash"></i>';
+    trashCanIcon.setAttribute("data-card-id", card.id);
+
+    trashCanIcon.addEventListener("click", async (event) => {
+      event.stopPropagation(); // Prevent the click event from propagating to the card element
+      const confirmed = confirm("Are you sure you want to delete this flashcard?");
+      if (confirmed) {
+        const cardId = event.target.getAttribute("data-card-id");
+        const formData = new FormData();
+        formData.append("card_id", cardId)
+        await fetch('/delete_flashcard', {
+          method: 'POST',
+          body: formData
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Failed to delete flashcard');
+            }
+            // Remove the card element from the deck list
+            flashcard.remove();
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('Failed to delete flashcard');
+          });
+      }
+    });
+    
+    trashCanBackground.appendChild(trashCanIcon);
+    flashcard.appendChild(trashCanBackground);
+
     container.appendChild(flashcard);
   }
+
   // Get the <span> element that closes the modal
   const closeBtn = document.getElementsByClassName("close")[0];
 

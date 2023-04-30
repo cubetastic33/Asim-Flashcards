@@ -1,8 +1,8 @@
 import json
 from asim_flashcards import app
 from flask import render_template, send_from_directory, send_file, request, redirect, make_response
-from asim_flashcards.db_operations import get_user, login_user, create_user, update_user, \
-    update_password, create_deck, get_flashcards_from_deck, add_flashcard_to_deck
+from asim_flashcards.db_operations import delete_deck, get_deck, get_user, login_user, create_user, update_user, \
+    update_password, create_deck, get_all_decks, get_flashcards_from_deck, add_flashcard_to_deck
 
 
 @app.route('/')
@@ -10,7 +10,8 @@ def get_index():
     email = request.cookies.get('email')
     password_hash = request.cookies.get('password_hash')
     if get_user(email, password_hash):
-        return render_template('home.html')
+        deck_list = get_all_decks(email, password_hash)
+        return render_template('home.html', deck_list=deck_list)
     return redirect('/login')
 
 
@@ -133,6 +134,35 @@ def post_update_password():
     resp.set_cookie('password_hash', result)
     return resp
 
+@app.route('/get_deck', methods=['GET'])
+def get_deck_route():
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    deck_name = request.args.get('deck_name')
+    
+    if not get_user(email, password_hash):
+        return json.dumps('Error: Not logged in'), 401
+
+    deck = get_deck(deck_name)
+    if deck:
+        deck_data = {
+            'deck_name': deck['deck_name'],
+            'new_cards': deck.get('new_cards', 0),
+            'review_cards': deck.get('review_cards', 0)
+        }
+        return json.dumps(deck_data), 200
+    else:
+        return json.dumps('Error: Deck not found'), 404
+
+
+@app.route('/get_all_decks', methods=['GET'])
+def get_all_decks_route():
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    deck_list = get_all_decks(email, password_hash)
+
+    return json.dumps(deck_list)
+
 
 @app.route('/create_deck', methods=['POST'])
 def post_create_deck():
@@ -142,8 +172,30 @@ def post_create_deck():
     if 'Error' in result:
         return json.dumps(result)
     # Added deck
-    resp = make_response(json.dumps('Success'))
+    deck = get_deck(request.form['name'])
+    new_cards = deck.get('new_cards', 0)
+    review_cards = deck.get('review_cards', 0)
+    response_data = {
+        'status': 'Success',
+        'deck_name': request.form['name'],
+        'new_cards': new_cards,
+        'review_cards': review_cards
+    }
+    resp = make_response(json.dumps(response_data))
     return resp
+
+@app.route('/delete_deck', methods=['POST'])
+def post_delete_deck():
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    deck_name = request.form['name']
+    result = delete_deck(email, password_hash, deck_name)
+    if 'Error' in result:
+        return json.dumps(result)
+    response_data = {'status': 'Success', 'deck_name': deck_name}
+    resp = make_response(json.dumps(response_data))
+    return resp
+
 
 
 @app.route('/create_flashcard', methods=['POST'])

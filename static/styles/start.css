@@ -26,6 +26,7 @@ body {
 
 
 .flashcard {
+    position: relative;
     background-color: white;
     display: flex;
     align-items: center;
@@ -121,6 +122,36 @@ body {
     border-radius: 6px;
   }
 
+  .trash-icon-background {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #8BC3F6;
+    border-radius: 50%;
+    border: 1px solid #009ACB;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    visibility: hidden;
+    bottom: 5px;
+    right: 5px;
+  }
+  
+  .trash-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    color: #009ccb94;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .flashcard:hover .trash-icon-background {
+    visibility: visible;
+  }
+  
+  
 
 
   /*----add flashcard modal----*/
