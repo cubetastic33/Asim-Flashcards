@@ -13,7 +13,6 @@ document.querySelector('#settings-logout a').addEventListener('click', e => {
 const nameEmailContainer = document.getElementById("name-email-text-container");
 const editButton = document.getElementById("settings-name-email-edit-button");
 const resetButton = document.getElementById("settings-password-reset-button");
-const saveNameEmailButton = document.getElementById("form-name-email-save-button");
 const savePassButton = document.getElementById('form-password-save-button');
 const nameEmailForm = document.getElementById("name-email-form");
 const passwprdForm = document.getElementById("password-form");
@@ -24,11 +23,25 @@ editButton.addEventListener("click", () => {
     nameEmailForm.style.display = "block";
 })
 
-saveNameEmailButton.addEventListener("click", () => {
-    nameEmailContainer.style.display = "block";
-    editButton.style.display = "block";
-    nameEmailForm.style.display = "none";
-})
+document.querySelector('#name-email-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new URLSearchParams(new FormData(document.querySelector('#name-email-form')));
+    fetch('/update_user', {
+        method: 'POST',
+        body: data,
+    }).then(response => response.json()).then(data => {
+        if (data === 'Success') {
+            nameEmailContainer.style.display = "block";
+            editButton.style.display = "block";
+            nameEmailForm.style.display = "none";
+            // Update the values shown in the settings page
+            document.querySelector('#user-name').innerText = document.querySelector('#name').value;
+            document.querySelector('#user-email').innerText = document.querySelector('#email').value;
+        } else {
+            alert(data);
+        }
+    });
+});
 
 resetButton.addEventListener("click", () => {
     resetButton.style.display = "none";
@@ -108,18 +121,18 @@ const pomodoro = {
     workSeconds: 0,
     breakMinutes: 5,
     breakSeconds: 0,
-  
+
     completed : document.querySelector("#completed"),
     total : document.querySelector("#total"),
     iterations: 1,
-  
+
     activeDisplay: document.querySelector("#settings-active-display"),
     setDisplay: document.querySelector("#settings-set-display"),
-  
+
     intervalId: null,
     isRunning: false,
     isWorking: true,
-  
+
     start() {
       const setCount = document.querySelector("#set").value;
       if (!this.isRunning) {
@@ -156,12 +169,12 @@ const pomodoro = {
           }, 1000);
       }
     },
-  
+
     stop() {
       clearInterval(this.intervalId);
       this.isRunning = false;
     },
-  
+
     reset() {
       this.workMinutes = 25;
       this.workSeconds = 0;
@@ -171,7 +184,7 @@ const pomodoro = {
       this.isWorking = true;
       this.updateTime();
     },
-  
+
     updateTime() {
       const minutesSpan = document.querySelector('#minutes');
       const secondsSpan = document.querySelector('#seconds');
@@ -186,31 +199,31 @@ const pomodoro = {
         secondsSpan.textContent = this.breakSeconds.toString().padStart(2, '0');
       }
     },
-  
+
     switchToBreak() {
       this.breakMinutes = 5;
       this.breakSeconds = 0;
       this.isWorking = false;
       this.updateTime();
     },
-  
+
     switchToWork() {
       this.workMinutes = 25;
       this.workSeconds = 0;
       this.isWorking = true;
       this.updateTime();
     },
-  
+
     countSet(){
       this.activeDisplay.style.display = 'block';
       this.setDisplay.style.display = 'none';
     },
-  
+
     setCounter(){
         this.activeDisplay.style.display = 'none';
         this.setDisplay.style.display = 'block';
     },
-  
+
     updateCounter(){
       if(this.iterations < document.querySelector("#set").value){
           this.iterations++;
@@ -221,20 +234,20 @@ const pomodoro = {
       }
     }
   };
-  
+
   const startButton = document.querySelector('#settings-timer-start');
   const stopButton = document.querySelector('#settings-timer-stop');
   const clearButton = document.querySelector('#settings-timer-clear');
-  
+
   startButton.addEventListener('click', () => {
       pomodoro.countSet();
       pomodoro.start();
   });
-  
+
   stopButton.addEventListener('click', () => {
       pomodoro.stop();
   });
-  
+
   clearButton.addEventListener('click', () => {
       pomodoro.setCounter();
       pomodoro.stop();

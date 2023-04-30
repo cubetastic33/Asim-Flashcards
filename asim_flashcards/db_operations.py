@@ -49,6 +49,18 @@ def create_user(name, email, password):
     return password_hash
 
 
+def update_user(new_name, new_email, email, password_hash):
+    # Create a new client and connect to the server
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
+                         tlsCaFile=certifi.where())
+    db = client['asim-flashcards']
+    result = db.users.update_one({'email': email, 'hash': password_hash},
+                                 {'$set': {'name': new_name, 'email': new_email}})
+    if result.matched_count == 0:
+        return 'Error: Not logged in'
+    return 'Success'
+
+
 def get_deck(deck_name):
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())

@@ -1,8 +1,8 @@
 import json
 from asim_flashcards import app
 from flask import render_template, send_from_directory, send_file, request, redirect, make_response
-from asim_flashcards.db_operations import get_user, login_user, create_user, get_deck, create_deck, \
-    get_flashcards_from_deck, add_flashcard_to_deck
+from asim_flashcards.db_operations import get_user, login_user, create_user, update_user, \
+    create_deck, get_flashcards_from_deck, add_flashcard_to_deck
 
 
 @app.route('/')
@@ -79,7 +79,7 @@ def post_login_user():
     if result.startswith('Error'):
         # There was an error logging in
         return json.dumps(result)
-    # The user credentials were correct
+    # The user credentials were correct, so create the cookies to log the user in
     resp = make_response(json.dumps('Success'))
     resp.set_cookie('email', request.form['email'].strip())
     resp.set_cookie('password_hash', result)
@@ -87,18 +87,32 @@ def post_login_user():
 
 
 @app.route('/signup_user', methods=['POST'])
-def signup_user():
+def post_signup_user():
     if request.form['password'] != request.form['confirm_password']:
         return json.dumps('Error: Passwords should match')
     result = create_user(request.form['name'].strip(), request.form['email'].strip(),
                          request.form['password'].strip())
     if result.startswith('Error'):
-        # There was an error creating the user
+        # There was an error creating the user, so just return the error
         return json.dumps(result)
-    # The user has been created
+    # The user has been created, so create the cookies to log the user in
     resp = make_response(json.dumps('Success'))
     resp.set_cookie('email', request.form['email'].strip())
     resp.set_cookie('password_hash', result)
+    return resp
+
+
+@app.route('/update_user', methods=['POST'])
+def post_update_user():
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    result = update_user(request.form['name'].strip(), request.form['email'].strip(), email, password_hash)
+    if result.startswith('Error'):
+        # There was an error updating the user, so just return the error
+        return json.dumps(result)
+    # The user has been updated, so update the email cookie to ensure they stay logged in
+    resp = make_response(json.dumps('Success'))
+    resp.set_cookie('email', request.form['email'].strip())
     return resp
 
 

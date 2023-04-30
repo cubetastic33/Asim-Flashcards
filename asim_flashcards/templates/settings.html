@@ -14,21 +14,21 @@
           <p class="name-email-text" id="user-name">{{ name }}</p>
           <p class="name-email-text" id="user-email">{{ email }}</p>
         </div>
-        <!--This is the form for editing user name and email address-->
+        <!--This is the form for editing name and email address-->
         <form class="info-form" id="name-email-form" style="display: none;">
           <div class="form-container">
-            <label for="username" class="info-form-text">Username</label>
+            <label for="name" class="info-form-text">Name</label>
             <br>
-            <input type="text" class="info-form-input" id="username" placeholder="Username" onkeyup="isEmpty()">
+            <input type="text" class="info-form-input" name="name" id="name" placeholder="Name" value="{{ name }}" autocomplete="off" required>
           </div>
           <div class="form-container">
-            <label for="user-email" class="form-text">Email</label>
+            <label for="email" class="form-text">Email</label>
             <br>
-            <input type="text" class="info-form-input" id="useremail" placeholder="Email">
+            <input type="text" class="info-form-input" name="email" id="email" placeholder="Email" value="{{ email }}" autocomplete="off" required>
           </div>
           <div class="form-button-container">
-            <!--Submit button for new user name and eamil-->
-            <input type="submit" class="form-button" id="form-name-email-save-button" value="Save" ></input>
+            <!--Submit button for new name and eamil-->
+            <input type="submit" class="form-button" id="form-name-email-save-button" value="Save" >
           </div>
         </form>
         <div>
