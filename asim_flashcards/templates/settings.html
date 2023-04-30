@@ -10,7 +10,8 @@
   <div class="settings-wapper">
     <div class="settings-container" id="settings-info">
       <div class="name-email-password-container" id="name-email-container">
-        <div class="name-email-text-container" id="name-email-text-container" style="display: block;">
+        <div class="name-email-text-container" id="name-email-text-container"
+             style="display: block;">
           <p class="name-email-text" id="user-name">{{ name }}</p>
           <p class="name-email-text" id="user-email">{{ email }}</p>
         </div>
@@ -19,57 +20,66 @@
           <div class="form-container">
             <label for="name" class="info-form-text">Name</label>
             <br>
-            <input type="text" class="info-form-input" name="name" id="name" placeholder="Name" value="{{ name }}" autocomplete="off" required>
+            <input type="text" class="info-form-input" name="name" id="name" placeholder="Name"
+                   value="{{ name }}" autocomplete="off" required>
           </div>
           <div class="form-container">
             <label for="email" class="form-text">Email</label>
             <br>
-            <input type="text" class="info-form-input" name="email" id="email" placeholder="Email" value="{{ email }}" autocomplete="off" required>
+            <input type="text" class="info-form-input" name="email" id="email" placeholder="Email"
+                   value="{{ email }}" autocomplete="off" required>
           </div>
           <div class="form-button-container">
-            <!--Submit button for new name and eamil-->
-            <input type="submit" class="form-button" id="form-name-email-save-button" value="Save" >
+            <!--Submit button for new name and email-->
+            <input type="submit" class="form-button" id="form-name-email-save-button" value="Save">
           </div>
         </form>
         <div>
           <button type="button" class="settings-info-button" id="settings-name-email-edit-button"
-         style="display: block;">Edit</button></div>
+                  style="display: block;">Edit
+          </button>
+        </div>
       </div>
-      <div class="name-email-password-container" id="pasword-container">
+      <div class="name-email-password-container" id="password-container">
         <div class="password-text-container">
-          <p class="possword-text" id="user-password">Password</p>
+          <p class="password-text" id="user-password">Password</p>
         </div>
         <!--This is the form for resetting user password-->
         <form class="info-form" id="password-form" style="display: none;">
           <div class="form-container">
             <label for="current-password" class="info-form-text">Current Password</label>
             <br>
-            <input type="password" class="info-form-input" id="current-password" placeholder="Current Password">
+            <input type="password" class="info-form-input" id="current-password"
+                   name="current-password" placeholder="Current Password" required>
           </div>
           <div class="form-container">
             <label for="new-password" class="info-form-text">New Password</label>
             <br>
-            <input type="password" class="info-form-input" id="new-password" placeholder="New Password">
+            <input type="password" class="info-form-input" id="new-password" name="new-password"
+                   placeholder="New Password" required>
           </div>
           <div class="form-container">
             <label for="confirm-password" class="info-form-text">Confirm Password</label>
             <br>
-            <input type="password" class="info-form-input" id="confirm-password" placeholder="Confirm Password">
+            <input type="password" class="info-form-input" id="confirm-password"
+                   name="confirm-password" placeholder="Confirm Password" required>
           </div>
           <div class="form-button-container">
             <!--Submit button for new password-->
-            <input type="submit" class="form-button" id="form-password-save-button" value="Save" ></input>
+            <input type="submit" class="form-button" id="form-password-save-button" value="Save">
           </div>
         </form>
         <div>
           <button type="button" class="settings-info-button" id="settings-password-reset-button"
-          style="display: block;">Reset</button>
+                  style="display: block;">Reset
+          </button>
         </div>
       </div>
     </div>
     <div class="settings-container" id="settings-scheme">
       <div class="settings-item-title-container" id="settings-shceme-title-container">
-        <img src="../images/light_color.png" alt="color scheme icon" class="settings-item-icon" id="settings-scheme-icon">
+        <img src="../images/light_color.png" alt="color scheme icon" class="settings-item-icon"
+             id="settings-scheme-icon">
         <h3 class="settings-item-title">Color Scheme</h3>
       </div>
       <div class="settings-item-body-container" id="settings-scheme-body-container">
@@ -84,14 +94,14 @@
           <div class="color-scheme-pannel">
             <figure>
               <img src="../images/scheme_blue.png" alt="scheme blue" class="scheme"
-              id="scheme-blue">
+                   id="scheme-blue">
             </figure>
             <p class="color-scheme-text">Calming</p>
           </div>
           <div class="color-scheme-pannel">
             <figure>
               <img src="../images/scheme_red.png" alt="scheme red" class="scheme"
-              id="scheme-red">
+                   id="scheme-red">
             </figure>
             <p class="color-scheme-text">Stimulating</p>
           </div>
@@ -115,19 +125,22 @@
     </div>
     <div class="settings-container" id="settings-darkmode">
       <div class="settings-item-title-container" id="settings-darkmode-title-container">
-        <img src="../images/light_darkmode.png" alt="light darkmode icon" class="settings-item-icon" id="settings-darkmode-icon">
+        <img src="../images/light_darkmode.png" alt="light darkmode icon" class="settings-item-icon"
+             id="settings-darkmode-icon">
         <h3 class="settings-item-title">Dark Mode</h3>
       </div>
       <div class="settings-item-body-container" id="settings-darkmode-body-container">
         <div class="darkmode-container">
           <figure>
-            <img src="../images/mode_light.png" alt="light darkmode image" class="darkmode-panel" id="lightmode-pannel">
+            <img src="../images/mode_light.png" alt="light darkmode image" class="darkmode-panel"
+                 id="lightmode-pannel">
           </figure>
           <p class="darkmode-text">Light Mode</p>
         </div>
         <div class="darkmode-container">
           <figure>
-            <img src="../images/mode_dark.png" alt="dark darkmode image" class="darkmode-panel" id="darkmode-pannel">
+            <img src="../images/mode_dark.png" alt="dark darkmode image" class="darkmode-panel"
+                 id="darkmode-pannel">
           </figure>
           <p class="darkmode-text">Dark Mode</p>
         </div>
@@ -135,7 +148,8 @@
     </div>
     <div class="settings-container" id="settings-timer">
       <div class="settings-item-title-container" id="settings-timer-title-container">
-        <img src="../images/light_timer.png" alt="pomodoro timer icon" class="settings-item-icon" id="settings-timer-icon">
+        <img src="../images/light_timer.png" alt="pomodoro timer icon" class="settings-item-icon"
+             id="settings-timer-icon">
         <h3 class="settings-item-title">Pomodoro Timer</h3>
       </div>
       <div class="settings-item-body-container" id="settings-timer-body-container">
@@ -146,19 +160,23 @@
         </div>
         <div class="settings-timer-display" id="settings-active-display" style="display: none;">
           <div class="setting-timer-container" id="settings-timer">
-            <p class="set-text">set<span id="completed">0</span>/<span id="total">0</span><span id="mode">Study</span></p>
-            <p ><span id="minutes">25</span>:<span id="seconds">00</span></p>
+            <p class="set-text">set<span id="completed">0</span>/<span id="total">0</span><span
+              id="mode">Study</span></p>
+            <p><span id="minutes">25</span>:<span id="seconds">00</span></p>
           </div>
         </div>
         <div class="settings-timer-buttons-container">
           <div class="settings-timer-button-container">
-            <input type="button" class="settings-timer-button" id="settings-timer-start" value="Start"></input>
+            <input type="button" class="settings-timer-button" id="settings-timer-start"
+                   value="Start"></input>
           </div>
           <div class="settings-timer-button-container">
-            <input type="button" class="settings-timer-button" id="settings-timer-stop" value="Stop"></input>
+            <input type="button" class="settings-timer-button" id="settings-timer-stop"
+                   value="Stop"></input>
           </div>
           <div class="settings-timer-button-container">
-            <input type="button" class="settings-timer-button" id="settings-timer-clear" value="Clear"></input>
+            <input type="button" class="settings-timer-button" id="settings-timer-clear"
+                   value="Clear"></input>
           </div>
         </div>
       </div>

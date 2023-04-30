@@ -44,16 +44,25 @@ document.querySelector('#name-email-form').addEventListener('submit', e => {
 });
 
 resetButton.addEventListener("click", () => {
-    resetButton.style.display = "none";
-    passwprdForm.style.display = "block";
+  resetButton.style.display = "none";
+  passwprdForm.style.display = "block";
 })
 
-savePassButton.addEventListener("click", () => {
-    resetButton.style.display = "block";
-    passwprdForm.style.display = "none";
-})
-
-
+passwprdForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = new URLSearchParams(new FormData(passwprdForm));
+    fetch('/update_password', {
+        method: 'POST',
+        body: data,
+    }).then(response => response.json()).then(data => {
+        if (data === 'Success') {
+            resetButton.style.display = "block";
+            passwprdForm.style.display = "none";
+        } else {
+            alert(data);
+        }
+    });
+});
 
 //color scheme change
 var schemeText = document.getElementById("scheme-text");

@@ -2,7 +2,7 @@ import json
 from asim_flashcards import app
 from flask import render_template, send_from_directory, send_file, request, redirect, make_response
 from asim_flashcards.db_operations import get_user, login_user, create_user, update_user, \
-    create_deck, get_flashcards_from_deck, add_flashcard_to_deck
+    update_password, create_deck, get_flashcards_from_deck, add_flashcard_to_deck
 
 
 @app.route('/')
@@ -102,17 +102,35 @@ def post_signup_user():
     return resp
 
 
-@app.route('/update_user', methods=['POST'])
+@app.route('/update_user', methods=['post'])
 def post_update_user():
     email = request.cookies.get('email')
     password_hash = request.cookies.get('password_hash')
-    result = update_user(request.form['name'].strip(), request.form['email'].strip(), email, password_hash)
-    if result.startswith('Error'):
+    result = update_user(request.form['name'].strip(), request.form['email'].strip(), email,
+                         password_hash)
+    if result.startswith('error'):
         # There was an error updating the user, so just return the error
         return json.dumps(result)
     # The user has been updated, so update the email cookie to ensure they stay logged in
-    resp = make_response(json.dumps('Success'))
+    resp = make_response(json.dumps('success'))
     resp.set_cookie('email', request.form['email'].strip())
+    return resp
+
+
+@app.route('/update_password', methods=['post'])
+def post_update_password():
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    if request.form['new-password'] != request.form['confirm-password']:
+        return json.dumps('Error: Passwords should match')
+    result = update_password(request.form['new-password'], request.form['current-password'], email,
+                             password_hash)
+    if result.startswith('Error'):
+        # There was an error updating the user, so just return the error
+        return json.dumps(result)
+    # The user has been updated, so update the hash cookie to ensure they stay logged in
+    resp = make_response(json.dumps('Success'))
+    resp.set_cookie('password_hash', result)
     return resp
 
 

@@ -61,6 +61,23 @@ def update_user(new_name, new_email, email, password_hash):
     return 'Success'
 
 
+def update_password(new_password, current_password, email, password_hash):
+    # Create a new client and connect to the server
+    client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
+                         tlsCaFile=certifi.where())
+    db = client['asim-flashcards']
+    user = db.users.find_one({'email': email, 'hash': password_hash})
+    if user is None:
+        return 'Error: Not logged in'
+    if not bcrypt.checkpw(current_password.encode('utf-8'), password_hash.encode('utf-8')):
+        return 'Error: Current password is incorrect'
+    # Generate password hash
+    salt = bcrypt.gensalt()
+    new_hash = str(bcrypt.hashpw(new_password.encode('utf-8'), salt), 'utf-8')
+    db.users.update_one({'email': email, 'hash': password_hash}, {'$set': {'hash': new_hash}})
+    return new_hash
+
+
 def get_deck(deck_name):
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())
