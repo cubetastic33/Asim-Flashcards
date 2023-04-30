@@ -78,13 +78,16 @@ def update_password(new_password, current_password, email, password_hash):
     return new_hash
 
 
-def get_deck(deck_name):
+def get_deck(deck_name, email, password_hash):
     # Create a new client and connect to the server
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())
     db = client['asim-flashcards']
-    # Return the deck that matches the deck_name
-    return db.decks.find_one({'deck_name': deck_name})
+    if user := db.users.find_one({'email': email, 'hash': password_hash}):
+        # Return the user's deck that matches the deck_name
+        return db.decks.find_one({'deck_name': deck_name, 'user_id': user.get('_id')})
+    else:
+        return 'Error: Not logged in'
 
 
 def get_all_decks(email, password_hash):

@@ -134,6 +134,7 @@ def post_update_password():
     resp.set_cookie('password_hash', result)
     return resp
 
+
 @app.route('/get_deck', methods=['GET'])
 def get_deck_route():
     email = request.cookies.get('email')
@@ -143,7 +144,7 @@ def get_deck_route():
     if not get_user(email, password_hash):
         return json.dumps('Error: Not logged in'), 401
 
-    deck = get_deck(deck_name)
+    deck = get_deck(deck_name, email, password_hash)
     if deck:
         deck_data = {
             'deck_name': deck['deck_name'],
@@ -172,7 +173,7 @@ def post_create_deck():
     if 'Error' in result:
         return json.dumps(result)
     # Added deck
-    deck = get_deck(request.form['name'])
+    deck = get_deck(request.form['name'], email, password_hash)
     new_cards = deck.get('new_cards', 0)
     review_cards = deck.get('review_cards', 0)
     response_data = {
