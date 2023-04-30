@@ -112,7 +112,7 @@ def post_update_user():
         # There was an error updating the user, so just return the error
         return json.dumps(result)
     # The user has been updated, so update the email cookie to ensure they stay logged in
-    resp = make_response(json.dumps('success'))
+    resp = make_response(json.dumps('Success'))
     resp.set_cookie('email', request.form['email'].strip())
     return resp
 
