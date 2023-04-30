@@ -136,7 +136,9 @@ def post_update_password():
 
 @app.route('/create_deck', methods=['POST'])
 def post_create_deck():
-    result = create_deck(request.form['name'])
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    result = create_deck(request.form['name'], email, password_hash)
     if 'Error' in result:
         return json.dumps(result)
     # Added deck
@@ -149,7 +151,9 @@ def post_create_flashcard():
     deck_name = request.form['name']
     front = request.form['front']
     back = request.form['back']
-    add_flashcard_to_deck(deck_name, front, back)
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    add_flashcard_to_deck(deck_name, email, password_hash, front, back)
     resp = make_response(json.dumps('Success'))
     return resp
 
@@ -157,4 +161,6 @@ def post_create_flashcard():
 @app.route('/get_flashcards', methods=['GET'])
 def post_get_flashcards():
     deck_name = request.args.get('name')
-    return json.dumps(get_flashcards_from_deck(deck_name))
+    email = request.cookies.get('email')
+    password_hash = request.cookies.get('password_hash')
+    return json.dumps(get_flashcards_from_deck(deck_name, email, password_hash))
