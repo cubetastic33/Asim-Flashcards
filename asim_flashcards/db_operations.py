@@ -117,7 +117,7 @@ def add_flashcard_to_deck(deck_name, email, password_hash, front, back):
     # Get user and deck id
     user = db.users.find_one({'email': email, 'hash': password_hash})
     user_id = user.get('_id')
-    deck = db.decks.find_one({'user_id': user_id})
+    deck = db.decks.find_one({'deck_name': deck_name, 'user_id': user_id})
     deck_id = deck.get('_id')
     # Add flashcard to a deck
     flashcards = db['flashcards']
