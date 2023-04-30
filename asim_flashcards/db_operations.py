@@ -1,4 +1,5 @@
 import os
+import unittest
 import bcrypt
 import certifi
 from pymongo.mongo_client import MongoClient
@@ -62,6 +63,9 @@ def update_user(new_name, new_email, email, password_hash):
 
 
 def update_password(new_password, current_password, email, password_hash):
+    # Validate the password
+    if len(new_password) < 8:
+        return 'Error: Password too short'
     # Create a new client and connect to the server
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())
@@ -203,3 +207,70 @@ def get_flashcards_from_deck(deck_name, email, password_hash):
         if flashcard['deck_name'] == deck_name and flashcard['deck_id'] == deck_id:
             matching_flashcards.append({'front': flashcard['front'], 'back': flashcard['back']})
     return matching_flashcards
+
+
+# Tests
+class TestUser(unittest.TestCase):
+    def setUp(self) -> None:
+        self.name = 'Jane Doe'
+        self.email = 'janedoe@example.com'
+        self.password = 'password'
+        self.password_hash = login_user(self.email, self.password)
+
+    def test01(self):
+        self.assertEqual('Error: Not logged in',
+                         update_user(self.name, 'foo@bar.com', self.email, 'wrong hash'))
+        self.assertEqual('Error: Current password is incorrect',
+                         update_password('3%bFofp65n*pf4', 'wrong password', self.email,
+                                         self.password_hash))
+
+    def test05(self):
+        self.assertEqual('Error: Not logged in',
+                         update_user(self.name, 'foo@', 'wrong@example.com',
+                                     self.password_hash))
+        self.assertEqual('Error: Password too short',
+                         update_password('aa', self.password, self.email,
+                                         self.password_hash))
+
+    def test06(self):
+        self.assertEqual('Error: Password too short',
+                         update_password('dd', self.password, self.email, self.password_hash))
+
+    def test07(self):
+        result = update_password('m*2NkUp9^CMRQ', self.password, self.email, self.password_hash)
+        self.assertFalse(result.startswith('Error'))
+        # Restore password
+        self.password_hash = update_password(self.password, 'm*2NkUp9^CMRQ', self.email, result)
+
+    def test09(self):
+        self.assertFalse(
+            update_user(self.name, 'foo@bar.com', self.email, self.password_hash).startswith(
+                'Error'))
+        # Restore email
+        self.assertFalse(
+            update_user(self.name, self.email, 'foo@bar.com', self.password_hash).startswith(
+                'Error'))
+
+    def test10(self):
+        self.assertFalse(
+            update_user(self.name, 'foo@bar.com', self.email, self.password_hash).startswith(
+                'Error'))
+        self.assertEqual('Error: Password too short',
+                         update_password('ee', self.password, self.email, self.password_hash))
+        # Restore email
+        self.assertFalse(
+            update_user(self.name, self.email, 'foo@bar.com', self.password_hash).startswith(
+                'Error'))
+
+    def test11(self):
+        self.assertFalse(
+            update_user(self.name, 'foo@bar.com', self.email, self.password_hash).startswith(
+                'Error'))
+        result = update_password('XBk2YnhFNh6&W', self.password, 'foo@bar.com', self.password_hash)
+        self.assertFalse(result.startswith('Error'))
+        # Restore password
+        self.password_hash = update_password(self.password, 'XBk2YnhFNh6&W', 'foo@bar.com', result)
+        # Restore email
+        self.assertFalse(
+            update_user(self.name, self.email, 'foo@bar.com', self.password_hash).startswith(
+                'Error'))
