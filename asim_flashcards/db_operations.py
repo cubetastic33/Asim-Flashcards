@@ -5,20 +5,20 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 
-def get_user(username, password_hash):
+def get_user(email, password_hash):
     # Create a new client and connect to the server
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())
     db = client['asim-flashcards']
-    return db.users.find_one({'username': username, 'hash': password_hash})
+    return db.users.find_one({'email': email, 'hash': password_hash})
 
 
-def login_user(username, password):
+def login_user(email, password):
     # Create a new client and connect to the server
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())
     db = client['asim-flashcards']
-    user = db.users.find_one({'username': username})
+    user = db.users.find_one({'email': email})
     if user is None:
         return 'Error: Invalid credentials'
     password_hash = user['hash']
@@ -27,7 +27,7 @@ def login_user(username, password):
     return 'Error: Invalid credentials'
 
 
-def create_user(username, password):
+def create_user(name, email, password):
     # Validate the password
     if len(password) < 8:
         return 'Error: Password too short'
@@ -35,14 +35,15 @@ def create_user(username, password):
     client = MongoClient(os.environ['MONGODB_URI'], server_api=ServerApi('1'),
                          tlsCaFile=certifi.where())
     db = client['asim-flashcards']
-    # Make sure the username isn't used yet
-    if db.users.count_documents({'username': username}) > 0:
-        return 'Error: Username already used'
+    # Make sure the email isn't used yet
+    if db.users.count_documents({'email': email}) > 0:
+        return 'Error: Email already used'
     # Generate password hash
     salt = bcrypt.gensalt()
     password_hash = str(bcrypt.hashpw(password.encode('utf-8'), salt), 'utf-8')
     db.users.insert_one({
-        'username': username,
+        'name': name,
+        'email': email,
         'hash': password_hash
     })
     return password_hash
