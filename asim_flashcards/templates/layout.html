@@ -7,19 +7,27 @@
   <link rel="stylesheet" href="/styles/navbar.css">
   <link rel="stylesheet" href="/styles/timer.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="/styles/darkmode.css">
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
   <!-- navbar -->
   <div class="navbar">
     <div class="navbar-brand">
-        <a href="/" id="asim">Asim</a>
+        <a href="/" id="asim"><span class="link-text nav-title">Asim</span></a>
         <div class="nav-icons">
-            <span class="material-icons" id="timer-icon">timer</span>
-            <div class="navbar-hamburger" id="openModal">
-                <div class="hamburger"></div>
-                <div class="hamburger"></div>
-                <div class="hamburger"></div>
-            </div>
+          <span class="material-icons" id="darkmode-icon">light_mode</span>            
+          <span class="material-icons" id="timer-icon">timer</span>
+          <div class="navbar-hamburger" id="openModal">
+              <div class="hamburger" id="ham"></div>
+              <div class="hamburger" id="bur"></div>
+              <div class="hamburger" id="ger"></div>
+          </div>
         </div>
     </div>
   </div>
@@ -35,16 +43,16 @@
       <div class="modal-title">Asim</div>
       <ul class="navbar-modal-nav">
         <li class="navbar-modal-nav-item">
-          <a href="/" class="navbar-modal-nav-link">Home</a>
+          <a href="/" class="navbar-modal-nav-link"><span class="link-text">Home</span></a>
         </li>
         <li class="navbar-modal-nav-item">
-          <a href="/calendar" class="navbar-modal-nav-link">Calendar</a>
+          <a href="/calendar" class="navbar-modal-nav-link"><span class="link-text">Calendar</span></a>
         </li>
         <li class="navbar-modal-nav-item">
-          <a href="/settings" class="navbar-modal-nav-link">Settings</a>
+          <a href="/settings" class="navbar-modal-nav-link"><span class="link-text">Settings</span></a>
         </li>
         <li class="navbar-modal-nav-item">
-          <a href="/about" class="navbar-modal-nav-link">About</a>
+          <a href="/about" class="navbar-modal-nav-link"><span class="link-text">About</span></a>
         </li>
       </ul>
     </div>
@@ -68,5 +76,6 @@
 
   <script src="/scripts/navbar.js"></script>
   <script src="/scripts/timer.js"></script>
+  <script src="/scripts/darkmode.js"></script>
 </body>
 </html>

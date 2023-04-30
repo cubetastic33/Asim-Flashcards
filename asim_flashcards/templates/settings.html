@@ -4,6 +4,7 @@
 
 {% block head %}
   <link rel="stylesheet" href="/styles/settings.css">
+  <link rel="stylesheet" href="/styles/darkmode.css">
 {% endblock %}
 
 {% block body %}
@@ -119,7 +120,7 @@
             </figure>
             <p class="color-scheme-text">Balancing</p>
           </div>
-          <p id="scheme-text">Explanation goes here</p>
+          <p id="scheme-text">This is the dfault scheme</p>
         </div>
       </div>
     </div>
@@ -135,14 +136,14 @@
             <img src="../images/mode_light.png" alt="light darkmode image" class="darkmode-panel"
                  id="lightmode-pannel">
           </figure>
-          <p class="darkmode-text">Light Mode</p>
+          <p class="mode-text">Light Mode</p>
         </div>
         <div class="darkmode-container">
           <figure>
             <img src="../images/mode_dark.png" alt="dark darkmode image" class="darkmode-panel"
                  id="darkmode-pannel">
           </figure>
-          <p class="darkmode-text">Dark Mode</p>
+          <p class="mode-text">Dark Mode</p>
         </div>
       </div>
     </div>
@@ -183,7 +184,7 @@
     </div>
     <hr>
     <div class="settings-container" id="settings-logout">
-      <a href="/login" class="logout"><span class="logoutText">Log Out</span></a>
+      <a href="/login" class="logout"><span class="link-text">Log Out</span></a>
     </div>
   </div>
   <script src="/scripts/settings.js"></script>

@@ -1,0 +1,26 @@
+.switchToDarkMode-body {
+    color: whitesmoke;
+    background-color: #353434;
+}
+
+.switchToDarkMode-timer {
+    color: whitesmoke;
+    background-color: #585858;
+}
+
+.switchToDarkMode-header {
+    color: whitesmoke;
+    background-color: #232222;
+}
+
+.switchToDarkMode-hamburger {
+    background-color: whitesmoke;
+}
+
+.switchToDarkMode-navbar-icons {
+    background-color: #232222;
+}
+
+.switchToDarkMode-links {
+    color: whitesmoke;
+}

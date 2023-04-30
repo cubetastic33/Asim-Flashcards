@@ -89,41 +89,6 @@ greenScheme.addEventListener("click", () => {
 });
 
 
-
-// light/dark mode
-const lightMode = document.getElementById("lightmode-pannel");
-const darkMode = document.getElementById("darkmode-pannel");
-var wrapper = document.querySelector(".settings-wapper");
-var body = document.body;
-var colorIcon = document.querySelector("#settings-scheme-icon");
-var darkmodeIcon = document.querySelector("#settings-darkmode-icon");
-var timerIcon = document.querySelector("#settings-timer-icon");
-var logoutText = document.querySelector(".logoutText");
-
-lightMode.addEventListener('click', () => {
-    body.style.color = "black";
-    body.style.backgroundColor = "white";
-    wrapper.style.color = "black";
-    wrapper.style.backgroundColor = "white";
-    colorIcon.src = "../images/light_color.png";
-    darkmodeIcon.src = "../images/light_darkmode.png";
-    timerIcon.src = "../images/light_timer.png";
-    logoutText.style.color = "black";
-})
-
-darkMode.addEventListener('click', () => {
-    body.style.color = "whitesmoke";
-    body.style.backgroundColor = "#1a1919";
-    wrapper.style.color = "whitesmoke";
-    wrapper.style.backgroundColor = "#1a1919";
-    colorIcon.src = "../images/dark_color.png";
-    darkmodeIcon.src = "../images/dark_darkmode.png";
-    timerIcon.src = "../images/dark_timer.png";
-    logoutText.style.color = "whitesmoke";
-})
-
-
-
 //Timer
 const pomodoro = {
     workMinutes: 25,
@@ -262,3 +227,56 @@ const pomodoro = {
       pomodoro.stop();
       pomodoro.reset();
   });
+
+
+
+  const darkmode = document.getElementById("darkmode-icon");
+  const lightmodepanel = document.getElementById("lightmode-pannel");
+  const darkmodepanel = document.getElementById("darkmode-pannel");
+  darkmode.addEventListener("click", switchToDarkMode);
+  lightmodepanel.addEventListener("click", switchToDarkMode);
+  darkmodepanel.addEventListener("click", switchToDarkMode);
+  var mode = false;
+  var icons = false;
+  
+  function switchToDarkMode() {
+     darkmode.innerText = darkmode.innerText === "dark_mode" ? "light_mode" : "dark_mode";
+     document.querySelector(".navbar").classList.toggle("switchToDarkMode-header");
+     document.querySelector(".modal").classList.toggle("switchToDarkMode-header");
+     document.querySelector(".nav-title").classList.toggle("switchToDarkMode-header");
+     document.querySelector("#ham").classList.toggle("switchToDarkMode-hamburger");
+     document.querySelector("#bur").classList.toggle("switchToDarkMode-hamburger");
+     document.querySelector("#ger").classList.toggle("switchToDarkMode-hamburger");
+     document.querySelector(".timer").classList.toggle("switchToDarkMode-timer");
+     document.body.classList.toggle("switchToDarkMode-body");
+
+     if(mode){
+         mode = false;
+         document.querySelector("#darkmode-icon").style.backgroundColor = "#ffffff";
+         document.querySelector("#timer-icon").style.backgroundColor = "#ffffff";
+         document.querySelector(".navbar-hamburger").style.backgroundColor = "#ffffff";
+     } else {
+         mode = true;
+         document.querySelector("#darkmode-icon").style.backgroundColor = "#232222";
+         document.querySelector("#timer-icon").style.backgroundColor = "#232222";
+         document.querySelector(".navbar-hamburger").style.backgroundColor = "#232222";
+     }
+     if(icons) {
+        icons = false;
+        document.querySelector("#settings-scheme-icon").src="../images/light_color.png";
+        document.querySelector("#settings-darkmode-icon").src="../images/light_darkmode.png";
+        document.querySelector("#settings-timer-icon").src="../images/light_timer.png";
+    } else {
+        icons = true;
+        document.querySelector("#settings-scheme-icon").src="../images/dark_color.png";
+        document.querySelector("#settings-darkmode-icon").src="../images/dark_darkmode.png";
+        document.querySelector("#settings-timer-icon").src="../images/dark_timer.png";
+    }
+  
+     var linkTexts = document.querySelectorAll(".link-text");
+     linkTexts.forEach((element) => {
+         element.classList.toggle("switchToDarkMode-links");
+     })
+ 
+  }
+
