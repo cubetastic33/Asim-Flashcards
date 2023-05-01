@@ -64,29 +64,6 @@ passwprdForm.addEventListener('submit', e => {
     });
 });
 
-//color scheme change
-var schemeText = document.getElementById("scheme-text");
-const defaultScheme = document.getElementById("scheme-default");
-const blueScheme = document.getElementById("scheme-blue");
-const redScheme = document.getElementById("scheme-red");
-const yellowScheme = document.getElementById("scheme-yellow");
-const greenScheme = document.getElementById("scheme-green");
-
-defaultScheme.addEventListener("click", () => {
-    schemeText.innerText = "This is the default scheme";
-});
-blueScheme.addEventListener("click", () => {
-    schemeText.innerText = "This is the blue scheme";
-});
-redScheme.addEventListener("click", () => {
-    schemeText.innerText = "This is the red scheme";
-});
-yellowScheme.addEventListener("click", () => {
-    schemeText.innerText = "This is the yellow scheme";
-});
-greenScheme.addEventListener("click", () => {
-    schemeText.innerText = "This is the green scheme";
-});
 
 
 //Timer
@@ -229,7 +206,7 @@ const pomodoro = {
   });
 
 
-
+  // dark mode for the setting page
   const darkmode = document.getElementById("darkmode-icon");
   const lightmodepanel = document.getElementById("lightmode-pannel");
   const darkmodepanel = document.getElementById("darkmode-pannel");

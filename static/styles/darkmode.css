@@ -24,3 +24,16 @@
 .switchToDarkMode-links {
     color: whitesmoke;
 }
+
+.switchToDarkMode-today {
+    color:black;
+}
+
+.switchToDarkMode-study-title {
+    color: whitesmoke;
+}
+
+.switchToDarkMode-study-card {
+    color: whitesmoke;
+    background-color: #4a4949;
+}

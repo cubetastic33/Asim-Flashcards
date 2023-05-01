@@ -1,4 +1,4 @@
- const darkmode = document.getElementById("darkmode-icon");
+const darkmode = document.getElementById("darkmode-icon");
  darkmode.addEventListener("click", switchToDarkMode);
  var mode = false;
  
@@ -31,5 +31,4 @@
     linkTexts.forEach((element) => {
         element.classList.toggle("switchToDarkMode-links");
     })
-
  }

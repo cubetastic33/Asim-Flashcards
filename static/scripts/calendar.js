@@ -170,33 +170,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-const closeBtn = modal.querySelector('.close');
-closeBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-  const taskInput = modal.querySelector('.task-input');
-  taskInput.classList.remove('error');
-  taskInput.placeholder = 'Enter task...';
-});
+  const closeBtn = modal.querySelector('.close');
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+    const taskInput = modal.querySelector('.task-input');
+    taskInput.classList.remove('error');
+    taskInput.placeholder = 'Enter task...';
+  });
 
 
-prevBtn.addEventListener('click', () => {
-currentMonth--;
-if (currentMonth < 0) {
-currentMonth = 11;
-currentYear--;
-}
-generateCalendar();
-});
+  prevBtn.addEventListener('click', () => {
+    currentMonth--;
+    if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+    }
+    generateCalendar();
+  });
 
-nextBtn.addEventListener('click', () => {
-currentMonth++;
-if (currentMonth > 11) {
-currentMonth = 0;
-currentYear++;
-}
-generateCalendar();
-});
-
+  nextBtn.addEventListener('click', () => {
+    currentMonth++;
+    if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+    }
+    generateCalendar();
+  });
 });
 
 
@@ -220,6 +219,7 @@ function switchToDarkMode() {
    document.querySelector("#thu").classList.toggle("switchToDarkMode-body");
    document.querySelector("#fri").classList.toggle("switchToDarkMode-body");
    document.querySelector("#sat").classList.toggle("switchToDarkMode-body");
+   document.querySelector(".today").classList.toggle("switchToDarkMode-today");
    document.body.classList.toggle("switchToDarkMode-body");
    
 
